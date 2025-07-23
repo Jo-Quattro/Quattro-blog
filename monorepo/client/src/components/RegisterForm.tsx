@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { handleRegister } from "../services/HandleRegister";
+import { handleRegister } from "../services/handleRegister";
 
 export function RegisterForm() {
   const [successMessage, setSuccessMessage] = useState("");

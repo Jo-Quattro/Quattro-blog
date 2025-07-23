@@ -17,14 +17,9 @@ export const handleLogin = async (event: React.FormEvent<HTMLFormElement>) => {
       credentials: "include",
       body: JSON.stringify(formData),
     });
-
     if (!response.ok) {
       throw new Error("Identifiants invalides");
     }
-
-    /*  const data = await response.json();
-      setAuth(data); */
-
     window.location.reload();
   } catch (err) {
     console.error(err);
