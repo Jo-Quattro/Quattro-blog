@@ -4,7 +4,7 @@ import { RegisterForm } from "../components/RegisterForm";
 
 export function ConnexionRegister() {
   return (
-    <section className="flex justify-center gap-5 items-center">
+    <section className="flex max-md:flex-col justify-center gap-5 items-center">
       <LoginForm />
       <LogoutButton />
       <p>OU BIEN</p>

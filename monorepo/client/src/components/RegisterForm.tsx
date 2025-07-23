@@ -9,52 +9,51 @@ export function RegisterForm() {
 
       <form
         onSubmit={(e) => handleRegister(e, setSuccessMessage)}
-        className="w-60  p-5 flex gap-6 flex-col justify-center rounded-2xl border-2 border-zinc-500"
+        className="w-65 p-5 flex gap-8 flex-col justify-center items-center rounded-2xl border-2 shadow-amber-700 shadow border-amber-700"
       >
         <div className="flex flex-col">
-          <label htmlFor="email">Email *</label>
           <input
-            placeholder="Votre email"
+            aria-label="email"
+            placeholder="Votre email *"
             type="email"
             name="email"
             required
-            className="border pl-1 border-black rounded"
+            className="border-2 pl-1 border-amber-800 bg-amber-50 rounded"
           />
         </div>
         <div className="flex flex-col">
-          <label htmlFor="name">Prénom *</label>
           <input
-            placeholder="Votre prénom"
+            aria-label="name"
+            placeholder="Votre prénom *"
             type="text"
             name="name"
             required
-            className="border pl-1 border-black rounded"
+            className="border-2 pl-1 border-amber-800 bg-amber-50 rounded"
           />
         </div>
         <div className="flex flex-col">
-          <label htmlFor="password">Mot de passe *</label>
           <input
-            placeholder="Mot de passe"
+            aria-label="password"
+            placeholder="Mot de passe *"
             type="password"
             name="password"
             required
-            className="border pl-1 border-black rounded"
+            className="border-2 pl-1 border-amber-800 bg-amber-50 rounded"
           />
         </div>
         <div className="flex flex-col">
-          <label htmlFor="passwordConfirm">
-            Confirmez votre mot de passe *
-          </label>
           <input
-            placeholder="Mot de passe"
+            aria-label="confirm password"
+            placeholder="Confirmez le MDP *"
             type="password"
             name="passwordConfirm"
             required
-            className="border pl-1 border-black rounded"
+            className="border-2 pl-1 border-amber-800 bg-amber-50 rounded"
           />
         </div>
         <div className="flex justify-center gap-2">
           <input
+            aria-label="cgu"
             type="checkbox"
             id="accept_cgu"
             name="accept_cgu"
@@ -69,7 +68,10 @@ export function RegisterForm() {
             *
           </label>
         </div>
-        <button type="submit" className="rounded border w-fit px-2 m-auto">
+        <button
+          type="submit"
+          className="rounded border-2 border-amber-600 bg-amber-200 w-fit px-2 m-auto active:brightness-90 active:border-cyan-900"
+        >
           Créez votre compte{" "}
         </button>
         {successMessage && (

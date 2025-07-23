@@ -12,6 +12,7 @@
   --title-font: "Playfair Display", serif;
   --body-font: "Inter", sans-serif;
   --accent-font: "Lora", serif;
+  --text-color: rgba(0, 0, 0, 0.55);
 }
 p,
 a,
@@ -20,11 +21,13 @@ button {
 }
 p {
   font-size: 20px;
+  color: var(--text-color);
 }
 h1,
 h2,
 h3 {
   font-family: var(--title-font);
+  color: var(--text-color);
 }
 h1 {
   font-size: 3rem;

@@ -1,11 +1,13 @@
 import "./App.css";
-import { ConnexionRegister } from "./pages/ConnexionRegister";
+import { Outlet } from "react-router";
+import { Header } from "./components/Header";
 
 function App() {
   return (
-    <>
-      <ConnexionRegister />
-    </>
+    <main className="relative bg-amber-100 ">
+      <Header />
+      <Outlet />
+    </main>
   );
 }
 
