@@ -42,13 +42,15 @@ export function RegisterForm() {
     }
   };
   return (
-    <section className="flex justify-center">
+    <section className="flex flex-col gap-2 justify-center">
+      <h3 className="text-center">Créez un compte</h3>
+
       <form
         onSubmit={handleSubmit}
         className="w-60  p-5 flex gap-6 flex-col justify-center rounded-2xl border-2 border-zinc-500"
       >
         <div className="flex flex-col">
-          <label htmlFor="email">Email</label>
+          <label htmlFor="email">Email *</label>
           <input
             placeholder="Votre email"
             type="email"
@@ -58,7 +60,7 @@ export function RegisterForm() {
           />
         </div>
         <div className="flex flex-col">
-          <label htmlFor="name">Prénom</label>
+          <label htmlFor="name">Prénom *</label>
           <input
             placeholder="Votre prénom"
             type="text"
@@ -68,7 +70,7 @@ export function RegisterForm() {
           />
         </div>
         <div className="flex flex-col">
-          <label htmlFor="password">Mot de passe</label>
+          <label htmlFor="password">Mot de passe *</label>
           <input
             placeholder="Mot de passe"
             type="password"
@@ -78,7 +80,9 @@ export function RegisterForm() {
           />
         </div>
         <div className="flex flex-col">
-          <label htmlFor="passwordConfirm">Confirmez votre mot de passe</label>
+          <label htmlFor="passwordConfirm">
+            Confirmez votre mot de passe *
+          </label>
           <input
             placeholder="Mot de passe"
             type="password"
@@ -99,7 +103,8 @@ export function RegisterForm() {
             J'accepte les{" "}
             <a href="/cgu" target="_blank" className="underline">
               CGU
-            </a>
+            </a>{" "}
+            *
           </label>
         </div>
         <button type="submit" className="rounded border w-fit px-2 m-auto">
