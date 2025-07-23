@@ -1,52 +1,14 @@
 import { useState } from "react";
+import { handleRegister } from "../services/HandleRegister";
 
 export function RegisterForm() {
   const [successMessage, setSuccessMessage] = useState("");
-  const baseURL = import.meta.env.VITE_API_URL;
-
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const form = new FormData(event.currentTarget);
-    const name = form.get("name") as string;
-    const email = form.get("email") as string;
-    const password = form.get("password") as string;
-    const passwordConfirm = form.get("passwordConfirm") as string;
-
-    if (password !== passwordConfirm) {
-      setSuccessMessage("Les mots de passe ne correspondent pas.");
-      return;
-    }
-    const formData = {
-      name,
-      email,
-      password,
-    };
-
-    try {
-      const response = await fetch(`${baseURL}/api/users`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-      const data = await response.json();
-
-      if (response.ok) {
-        setSuccessMessage("Compte créé avec succès !");
-      } else {
-        setSuccessMessage(`Erreur : ${data.message || "Inconnue"}`);
-      }
-    } catch (err) {
-      setSuccessMessage("Une erreur est survenue. Veuillez réessayer.");
-    }
-  };
   return (
     <section className="flex flex-col gap-2 justify-center">
       <h3 className="text-center">Créez un compte</h3>
 
       <form
-        onSubmit={handleSubmit}
+        onSubmit={(e) => handleRegister(e, setSuccessMessage)}
         className="w-60  p-5 flex gap-6 flex-col justify-center rounded-2xl border-2 border-zinc-500"
       >
         <div className="flex flex-col">
