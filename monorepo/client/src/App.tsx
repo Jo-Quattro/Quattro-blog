@@ -1,11 +1,10 @@
 import "./App.css";
-import { RegisterForm } from "./components/RegisterForm";
+import { ConnexionRegister } from "./pages/ConnexionRegister";
 
 function App() {
   return (
     <>
-      <h1 className="w-[100%] text-center">Quattro-Blog</h1>
-      <RegisterForm />
+      <ConnexionRegister />
     </>
   );
 }

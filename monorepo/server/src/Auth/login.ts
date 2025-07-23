@@ -2,6 +2,7 @@ import { RequestHandler } from "express";
 import userRepository from "../repositories/userRepository";
 import { verifyPassword } from "../services/verifyPasword";
 import { createJWT } from "../services/createJWT";
+import { createCookie } from "../services/createCookie";
 
 export const login: RequestHandler = async (req, res, next) => {
   try {
@@ -20,6 +21,8 @@ export const login: RequestHandler = async (req, res, next) => {
     }
     const { password, ...userWithoutPassword } = user;
     const jwt = await createJWT(user);
+
+    createCookie(res, jwt);
     res.json({
       user: userWithoutPassword,
       message: "Login successful",
