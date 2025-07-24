@@ -1,4 +1,16 @@
 @import "tailwindcss";
+
+@theme {
+  --color-midnight: #121063;
+  --color-tahiti: #3ab7bf;
+  --color-bermuda: #78dcca;
+  --color-mainTheme: rgb(254 243 199); /* amber 100 */
+  --color-secondTheme: rgb(253 230 138); /* amber 200 */
+  --color-mainBorder: rgb(180 83 9); /* amber 800 */
+  --color-buttonBorder: rgb(217 119 6); /* amber 600 */
+  --color-shadow: gray;
+}
+
 * {
   box-sizing: border-box;
 }

@@ -9,7 +9,7 @@ export function RegisterForm() {
 
       <form
         onSubmit={(e) => handleRegister(e, setSuccessMessage)}
-        className="w-65 p-5 flex gap-8 flex-col justify-center items-center rounded-2xl border-2 shadow-amber-700 shadow border-amber-700"
+        className="w-65 p-5 flex gap-8 flex-col justify-center items-center rounded-2xl border-2 shadow-mainBorder shadow border-mainBorder"
       >
         <div className="flex flex-col">
           <input
@@ -18,7 +18,7 @@ export function RegisterForm() {
             type="email"
             name="email"
             required
-            className="border-2 pl-1 border-amber-800 bg-amber-50 rounded"
+            className="border-2 pl-1 border-mainBorder bg-amber-50 rounded"
           />
         </div>
         <div className="flex flex-col">
@@ -28,7 +28,7 @@ export function RegisterForm() {
             type="text"
             name="name"
             required
-            className="border-2 pl-1 border-amber-800 bg-amber-50 rounded"
+            className="border-2 pl-1 border-mainBorder bg-amber-50 rounded"
           />
         </div>
         <div className="flex flex-col">
@@ -38,7 +38,7 @@ export function RegisterForm() {
             type="password"
             name="password"
             required
-            className="border-2 pl-1 border-amber-800 bg-amber-50 rounded"
+            className="border-2 pl-1 border-mainBorder bg-amber-50 rounded"
           />
         </div>
         <div className="flex flex-col">
@@ -48,7 +48,7 @@ export function RegisterForm() {
             type="password"
             name="passwordConfirm"
             required
-            className="border-2 pl-1 border-amber-800 bg-amber-50 rounded"
+            className="border-2 pl-1 border-mainBorder bg-amber-50 rounded"
           />
         </div>
         <div className="flex justify-center gap-2">
@@ -70,7 +70,7 @@ export function RegisterForm() {
         </div>
         <button
           type="submit"
-          className="rounded border-2 border-amber-600 bg-amber-200 w-fit px-2 m-auto active:brightness-90 active:border-cyan-900"
+          className="rounded border-2 border-buttonBorder bg-secondTheme w-fit px-2 m-auto active:brightness-90 active:border-cyan-900"
         >
           Créez votre compte{" "}
         </button>
