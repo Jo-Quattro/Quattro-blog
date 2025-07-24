@@ -101,3 +101,47 @@ INSERT INTO article (title, content, user_id) VALUES
 
 ('Top 5 des Films à Voir en 2023',
 '<p>Voici notre sélection des meilleurs films sortis en 2023 :</p><p><img src=\"https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80\" alt=\"Cinéma\"></p><ol><li><strong>Oppenheimer</strong> - Un biopic captivant sur le père de la bombe atomique</li><li><em>Barbie</em> - Une comédie colorée et pleine de sens</li><li>Killers of the Flower Moon - Un drame historique puissant</li><li>The Super Mario Bros. Movie - Pour les amateurs de jeux vidéo</li><li>Poor Things - Une comédie noire originale</li></ol><p>Quel est votre film préféré de cette année ? Partagez-le en commentaire !</p>', 1);
+
+-- Utilisateurs fictifs
+INSERT INTO user (id, name, email, password, is_admin) VALUES
+(2, "Alice Martin", "alice.martin@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
+(3, "Lucas Dupont", "lucas.dupont@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
+(4, "Sofia Nguyen", "sofia.nguyen@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
+(5, "Yassine Benali", "yassine.benali@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
+(6, "Emma Dubois", "emma.dubois@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false);
+
+
+-- Commentaires pour article 1 (Découverte de Bali : Paradis Tropical)
+INSERT INTO comment (text, user_id, article_id) VALUES
+('Bali est vraiment magnifique, j’y suis allé l’été dernier !', 2, 1),
+('Merci pour les conseils de voyage, je note pour mon prochain trip !', 3, 1),
+('Le nasi goreng est incroyable, et les plages sont à couper le souffle.', 4, 1);
+
+-- Article 2 (Road Trip en Islande)
+INSERT INTO comment (text, user_id, article_id) VALUES
+('Ton itinéraire est top ! Le cercle d’Or est magique.', 5, 2),
+('Islande = mon rêve ! Merci pour les adresses :)', 1, 2),
+('J’y vais en septembre, des conseils pour camper sur place ?', 6, 2);
+
+-- Article 3 (Croisière en Méditerranée)
+INSERT INTO comment (text, user_id, article_id) VALUES
+('J’ai adoré Dubrovnik pendant ma croisière, je recommande !', 2, 3),
+('Super article, ça donne envie de partir tout de suite...', 3, 3);
+
+-- Article 4 (Les Meilleurs Cafés de Paris)
+INSERT INTO comment (text, user_id, article_id) VALUES
+('Holybelly, c’est vraiment le meilleur pour bruncher !', 4, 4),
+('Boot Café, une vraie pépite cachée, merci pour la reco.', 5, 4),
+('Je passe toujours au Café de Flore quand je suis à Paris.', 6, 4);
+
+-- Article 5 (Recette de Tiramisu Facile)
+INSERT INTO comment (text, user_id, article_id) VALUES
+('Testé hier soir avec des amis, on s’est régalés !', 3, 5),
+('Merci pour cette recette, super simple et délicieuse.', 2, 5),
+('Quel mascarpone tu conseilles ?', 1, 5);
+
+-- Article 6 (Top 5 des Films à Voir en 2023)
+INSERT INTO comment (text, user_id, article_id) VALUES
+('J’ai adoré Oppenheimer !', 4, 6),
+('Barbie, un vrai moment de détente, trop cool.', 5, 6),
+('Il manque John Wick 4 ;) ', 6, 6);

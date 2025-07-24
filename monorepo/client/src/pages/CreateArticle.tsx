@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { QuillEditor } from "../components/quill/QuillEditor";
+import { useAuth } from "../hooks/useAuth";
+import { useNavigate } from "react-router";
 
 const baseURL = import.meta.env.VITE_API_URL;
 
 export function CreateArticle() {
   const [htmlContent, setHtmlContent] = useState("");
+  const isAuth = useAuth();
 
   const handleSubmitArticle = async (
     event: React.FormEvent<HTMLFormElement>
@@ -33,14 +36,30 @@ export function CreateArticle() {
       console.log(res);
     }
   };
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuth === false) {
+      navigate("/connexionInscription");
+    }
+  }, [isAuth, navigate]);
+
+  if (isAuth === null) {
+    return <p className="text-center mt-10">Chargement...</p>;
+  }
+
+  if (!isAuth) return null;
+  if (isAuth === null) {
+    return <p className="text-center mt-10">Chargement...</p>; // au cas où
+  }
 
   return (
-    <section className="flex flex-col items-center h-100 gap-5">
-      <h2 className="pt-10 text-center">Crée ton article personnalisé</h2>
+    <section className="py-10 flex flex-col items-center gap-5">
+      <h2 className="text-center">Crée ton article personnalisé</h2>
 
       <form
         onSubmit={handleSubmitArticle}
-        className="w-full max-w-4xl flex flex-col items-center h-100 gap-5"
+        className="w-full max-w-4xl flex flex-col items-center gap-5"
       >
         <input
           aria-label="Article title"

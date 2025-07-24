@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router";
+import { ArticleCard } from "../components/ArticleCard";
 
 interface Articles {
   id: number;
@@ -15,13 +17,15 @@ export function Home() {
   }, []);
   console.info(articles);
   return (
-    <>
-      <h2 className="pt-10 text-center">Coucou la home</h2>
-      {articles.map((article) => (
-        <h3 key={article.id} title={article.title}>
-          {article.title}
-        </h3>
-      ))}
-    </>
+    <section className="py-10 flex flex-col gap-10">
+      <h2 className=" text-center">Partagez vos meilleurs souvenirs</h2>
+      <div className="flex flex-wrap gap-5 justify-center items-center">
+        {articles.map((article) => (
+          <Link to={`/article/${article.id}`}>
+            <ArticleCard title={article.title} />
+          </Link>
+        ))}
+      </div>
+    </section>
   );
 }

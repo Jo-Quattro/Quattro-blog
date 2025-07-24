@@ -10,6 +10,7 @@ export const handleLogout = async () => {
       credentials: "include",
     });
     console.info("Déconnecté");
+    window.location.reload();
   } catch (err) {
     console.error(err);
     alert("Erreur lors de la déconnexion");

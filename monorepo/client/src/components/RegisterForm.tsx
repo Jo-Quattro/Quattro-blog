@@ -5,7 +5,7 @@ export function RegisterForm() {
   const [successMessage, setSuccessMessage] = useState("");
   return (
     <section className="flex flex-col gap-2 justify-center">
-      <h3 className="text-center">Créez un compte</h3>
+      <h3 className="text-center">Crée un compte</h3>
 
       <form
         onSubmit={(e) => handleRegister(e, setSuccessMessage)}
@@ -14,7 +14,7 @@ export function RegisterForm() {
         <div className="flex flex-col">
           <input
             aria-label="email"
-            placeholder="Votre email *"
+            placeholder="Ton email *"
             type="email"
             name="email"
             required
@@ -24,7 +24,7 @@ export function RegisterForm() {
         <div className="flex flex-col">
           <input
             aria-label="name"
-            placeholder="Votre prénom *"
+            placeholder="Ton prénom *"
             type="text"
             name="name"
             required
@@ -44,7 +44,7 @@ export function RegisterForm() {
         <div className="flex flex-col">
           <input
             aria-label="confirm password"
-            placeholder="Confirmez le MDP *"
+            placeholder="Confirme ton MDP *"
             type="password"
             name="passwordConfirm"
             required
@@ -70,9 +70,9 @@ export function RegisterForm() {
         </div>
         <button
           type="submit"
-          className="rounded border-2 border-buttonBorder bg-secondTheme w-fit px-2 m-auto active:brightness-90 active:border-cyan-900"
+          className="rounded border-2 font-semibold border-buttonBorder bg-secondTheme w-fit px-2 m-auto active:brightness-90 active:border-cyan-900"
         >
-          Créez votre compte{" "}
+          Crée ton compte{" "}
         </button>
         {successMessage && (
           <p

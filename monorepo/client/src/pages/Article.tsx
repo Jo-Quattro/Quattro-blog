@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { CommentSection } from "../components/CommentSection";
+import { AddComment } from "../components/AddComment";
 
 type Article = {
   id: number;
@@ -32,9 +34,13 @@ export function Article() {
   if (!article) return <div>Chargement...</div>;
 
   return (
-    <article className="prose max-w-3xl mx-auto p-4">
-      <h1>{article.title}</h1>
-      <div dangerouslySetInnerHTML={{ __html: article.content }} />
-    </article>
+    <>
+      <article className="flex flex-col items-center gap-5 py-10 prose w-[90%] mx-auto ">
+        <h1>{article.title}</h1>
+        <div dangerouslySetInnerHTML={{ __html: article.content }} />
+        <CommentSection />
+        <AddComment article_id={article.id} />
+      </article>
+    </>
   );
 }
