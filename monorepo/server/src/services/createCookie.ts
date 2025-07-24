@@ -1,7 +1,7 @@
 import { Response } from "express";
 
 export function createCookie(res: Response, token: string): void {
-  res.cookie("auth_token", token, {
+  res.cookie("token", token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "lax",

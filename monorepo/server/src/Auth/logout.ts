@@ -2,7 +2,7 @@ import { RequestHandler } from "express";
 
 export const logout: RequestHandler = async (req, res) => {
   res
-    .clearCookie("auth_token", {
+    .clearCookie("token", {
       httpOnly: true,
       sameSite: "strict",
       secure: true,

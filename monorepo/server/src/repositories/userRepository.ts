@@ -8,9 +8,14 @@ interface User {
   password: string;
   is_admin: boolean;
 }
+interface UserInput {
+  name: string;
+  email: string;
+  password: string;
+}
 class userRepository {
   //CREATE
-  async create({ name, email, password }: User) {
+  async createUser({ name, email, password }: UserInput) {
     const [result] = await databaseClient.query<Result>(
       "insert into user (name, email, password) values (?, ?, ?)",
       [name, email, password]

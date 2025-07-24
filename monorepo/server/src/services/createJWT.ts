@@ -9,6 +9,7 @@ interface User {
 export function createJWT(user: User) {
   const myPayload: JwtPayload & { isAdmin: boolean } = {
     sub: user.id.toString(),
+    id: user.id,
     isAdmin: user.is_admin,
   };
 
