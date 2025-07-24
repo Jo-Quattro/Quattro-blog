@@ -1,9 +1,25 @@
+import { Link } from "react-router";
+
 export function Header() {
   return (
-    <header className="font-bold sticky top-0 ">
-      <h1 className="pl-3 bg-linear-to-r/hsl from-[rgba(0, 0, 0, 0.55)] to-amber-500 bg-clip-text text-transparent backdrop-blur-md z-10">
+    <header className="flex justify-between px-3 items-center font-bold sticky top-0 z-19 backdrop-blur-md">
+      <h1 className="bg-linear-to-r/hsl from-[rgba(0, 0, 0, 0.55)] to-amber-500 bg-clip-text text-transparent">
         Quattro- Blog
       </h1>
+      <nav className="flex gap-5">
+        <Link
+          to="/create/article"
+          className="rounded border-2 border-buttonBorder bg-secondTheme w-fit px-2 active:brightness-90 active:border-cyan-900"
+        >
+          Crée ton article
+        </Link>
+        <Link
+          to="/connexionInscription"
+          className="rounded border-2 border-buttonBorder bg-secondTheme w-fit px-2 active:brightness-90 active:border-cyan-900"
+        >
+          Connexion
+        </Link>
+      </nav>
       <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-amber-700 to-transparent" />
     </header>
   );

@@ -4,7 +4,7 @@ import { Header } from "./components/Header";
 
 function App() {
   return (
-    <main className="relative bg-mainTheme ">
+    <main className="relative bg-mainTheme h-400">
       <Header />
       <Outlet />
     </main>

@@ -13,7 +13,7 @@ CREATE TABLE article (
   creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   modification_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   user_id INT NOT NULL,
-  FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
+  FOREIGN KEY (user_id) REFERENCES user(id)
 );
 
 
