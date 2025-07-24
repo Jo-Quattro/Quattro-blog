@@ -3,24 +3,15 @@ import articleRepository from "../repositories/articleRepository";
 import jwt from "jsonwebtoken";
 
 //BROWSE
-const browseArticles: RequestHandler = async (req, res, next) => {
+/* const browseArticles: RequestHandler = async (req, res, next) => {
   try {
     const articles = await articleRepository.readAllArticles();
-    res.json(articles);
+    res.json(articles)
   } catch (err) {
     next(err);
   }
-};
+}; */
 //READ
-const readArticle: RequestHandler = async (req, res, next) => {
-  try {
-    const articleId = Number(req.params.id);
-    const article = await articleRepository.readSingleArticle(articleId);
-    res.json(article);
-  } catch (err) {
-    next(err);
-  }
-};
 
 //EDIT
 
@@ -57,4 +48,4 @@ const addArticle: RequestHandler = async (req, res, next) => {
 
 //DELETE
 
-export { addArticle, browseArticles, readArticle };
+export { addArticle /* , browseArticles  */ };
