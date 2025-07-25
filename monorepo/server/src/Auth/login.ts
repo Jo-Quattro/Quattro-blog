@@ -7,15 +7,14 @@ import { createCookie } from "../services/createCookie";
 export const login: RequestHandler = async (req, res, next) => {
   try {
     const user = await userRepository.readByEmail(req.body.email);
-
     if (!user) {
-      console.info("Utilisateur non trouvé");
+      console.info("Utilisateur introuvable");
       res.status(401).json({ message: "Email ou mot de passe invalide." });
       return;
     }
     const isValid = await verifyPassword(req.body.password, user.password);
     if (!isValid) {
-      console.info("Wrong password");
+      console.info("Mauvais mot de passe");
       res.sendStatus(422);
       return;
     }
@@ -25,11 +24,9 @@ export const login: RequestHandler = async (req, res, next) => {
     createCookie(res, jwt);
     res.json({
       user: userWithoutPassword,
-      message: "Login successful",
+      message: "Connexion réussie",
     });
-    console.info(
-      `Credentials matching, welcome ${user.name}, your JWT : ${jwt}`
-    );
+    console.info(`Salut ${user.name}, ton JWT : ${jwt}`);
   } catch (err) {
     next(err);
   }

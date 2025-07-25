@@ -35,21 +35,21 @@ insert into user (id, name, email, password, is_admin)
 
 -- Table user (inchangée, juste reprise ici)
 INSERT INTO user (id, name, email, password, is_admin) VALUES
-(2, "Alice Martin", "alice.martin@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
-(3, "Lucas Dupont", "lucas.dupont@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
-(4, "Sofia Nguyen", "sofia.nguyen@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
-(5, "Yassine Benali", "yassine.benali@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
-(6, "Emma Dubois", "emma.dubois@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
-(7, "Nicolas Lefevre", "nicolas.lefevre@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
-(8, "Isabelle Moreau", "isabelle.moreau@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
-(9, "Julien Bernard", "julien.bernard@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
-(10, "Camille Dubois", "camille.dubois@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
-(11, "Sophie Lambert", "sophie.lambert@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
-(12, "Thomas Girard", "thomas.girard@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
-(13, "Laura Fontaine", "laura.fontaine@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
-(14, "Antoine Rousseau", "antoine.rousseau@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
-(15, "Claire Dupont", "claire.dupont@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
-(16, "Alexandre Martin", "alexandre.martin@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false);
+(2, "Alice", "alice.martin@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
+(3, "Lucas", "lucas.dupont@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
+(4, "Sofia", "sofia.nguyen@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
+(5, "Yassine", "yassine.benali@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
+(6, "Emma", "emma.dubois@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
+(7, "Nicolas", "nicolas.lefevre@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
+(8, "Isabelle", "isabelle.moreau@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
+(9, "Julien", "julien.bernard@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
+(10, "Camille", "camille.dubois@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
+(11, "Sophie", "sophie.lambert@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
+(12, "Thomas", "thomas.girard@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
+(13, "Laura", "laura.fontaine@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
+(14, "Antoine", "antoine.rousseau@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
+(15, "Claire", "claire.dupont@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
+(16, "Alexandre", "alexandre.martin@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false);
 
 INSERT INTO article (title, content, user_id, preview_img) VALUES
 

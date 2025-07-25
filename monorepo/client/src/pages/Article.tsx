@@ -37,9 +37,9 @@ export function Article() {
   return (
     <>
       <article className="flex flex-col items-center gap-5 py-10 prose mx-auto ">
-        <h1 className="text-[2rem] font-bold px-3 bg-linear-to-r/hsl from-[rgba(0, 0, 0, 0.10)] to-amber-800 bg-clip-text text-transparent ">
+        <h2 className="text-[2.5rem] text-center font-bold px-3 bg-linear-to-r/hsl from-[rgba(0, 0, 0, 0.10)] to-amber-800 bg-clip-text text-transparent ">
           {article.title}
-        </h1>
+        </h2>
         <img
           src={article.preview_img}
           alt={article.title}

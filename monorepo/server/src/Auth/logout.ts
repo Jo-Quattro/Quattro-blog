@@ -9,5 +9,5 @@ export const logout: RequestHandler = async (req, res) => {
     })
     .clearCookie("email", { httpOnly: true, sameSite: "strict", secure: true })
     .status(200)
-    .json({ message: "Déconnexion réussie" });
+    .json({ message: "Déconnecté" });
 };

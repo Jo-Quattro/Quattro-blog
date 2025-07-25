@@ -58,7 +58,7 @@ export function CreateArticle() {
           name="preview_img"
           placeholder="Lien de ton image d'entête"
           required
-          className="border-2 pl-1 border-mainBorder bg-amber-50 rounded w-[35%]"
+          className="border-2 pl-1 border-mainBorder bg-amber-50 rounded w-[55%] sm:w-[35%]"
           type="text"
         />
         <input
@@ -67,16 +67,15 @@ export function CreateArticle() {
           name="title"
           placeholder="Titre de l'article"
           required
-          className="border-2 pl-1 border-mainBorder bg-amber-50 rounded w-[35%]"
+          className="border-2 pl-1 border-mainBorder bg-amber-50 rounded w-[55%] sm:w-[35%]"
         />
 
         <QuillEditor value={htmlContent} onChange={setHtmlContent} />
-
         <button
           type="submit"
           className="rounded border-2 border-buttonBorder bg-secondTheme w-fit px-2 m-auto active:brightness-90 active:border-cyan-900"
         >
-          Créez ton article
+          Crée ton article
         </button>
       </form>
     </section>
