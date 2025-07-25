@@ -19,7 +19,7 @@ export function Home() {
   console.info(articles);
   return (
     <section className="py-10 flex flex-col gap-10">
-      <h2 className=" text-center flex flex-col bg-linear-to-r/hsl from-[rgba(0, 0, 0, 0.5)] to-amber-700 bg-clip-text text-transparent">
+      <h2 className="text-[2.5rem] font-bold text-center flex flex-col bg-linear-to-r/hsl from-[rgba(0, 0, 0, 0.5)] to-amber-700 bg-clip-text text-transparent">
         <span className="pr-20"> Des voyages, des recettes,</span>{" "}
         <span className="pl-20">des souvenirs à partager ?</span>
       </h2>

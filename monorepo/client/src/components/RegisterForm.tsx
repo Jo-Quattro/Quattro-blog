@@ -5,7 +5,7 @@ export function RegisterForm() {
   const [successMessage, setSuccessMessage] = useState("");
   return (
     <section className="flex flex-col gap-2 justify-center">
-      <h3 className="text-center">Crée un compte</h3>
+      <h2 className="text-center">Crée un compte</h2>
 
       <form
         onSubmit={(e) => handleRegister(e, setSuccessMessage)}

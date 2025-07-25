@@ -71,12 +71,11 @@ export function CreateArticle() {
         />
 
         <QuillEditor value={htmlContent} onChange={setHtmlContent} />
-
         <button
           type="submit"
           className="rounded border-2 border-buttonBorder bg-secondTheme w-fit px-2 m-auto active:brightness-90 active:border-cyan-900"
         >
-          Créez ton article
+          Crée ton article
         </button>
       </form>
     </section>

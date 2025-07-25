@@ -8,6 +8,7 @@ export function AddComment({ article_id }: { article_id: number }) {
         onSubmit={(e) => handleCommentSubmit(e, article_id)}
       >
         <textarea
+          aria-label="Comment area"
           name="comment"
           placeholder="Laisse ton commentaire"
           className="pt-2 pl-2 w-75 h-20 rounded-xl border-2 border-mainBorder shadow-mainBorder shadow-md"

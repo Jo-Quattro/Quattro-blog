@@ -21,18 +21,6 @@ const readCommentsArticle: RequestHandler = async (req, res, next) => {
     next(err);
   }
 };
-
-/* const readArticle: RequestHandler = async (req, res, next) => {
-  try {
-    const articleId = Number(req.params.id);
-    const article = await articleRepository.readSingleArticle(articleId);
-    res.json(article);
-  } catch (err) {
-    next(err);
-  }
-};
- */
-
 //EDIT
 
 //ADD

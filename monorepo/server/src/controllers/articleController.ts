@@ -31,7 +31,6 @@ const addArticle: RequestHandler = async (req, res, next) => {
     const token = req.cookies?.token;
 
     if (!token) {
-      console.log("Cookies reçus :", req.cookies);
       res.status(401).json({ message: "Pas de token trouvé" }); //
     }
 
@@ -41,8 +40,6 @@ const addArticle: RequestHandler = async (req, res, next) => {
 
     const { title, preview_img, content } = req.body;
     const user_id = decoded.id;
-    console.info(user_id);
-
     if (!title || !content || !user_id) {
       res.status(400).json({ message: "Champs manquants" });
     }

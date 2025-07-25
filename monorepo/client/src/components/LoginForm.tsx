@@ -3,7 +3,7 @@ import { handleLogin } from "../services/handleLogin";
 export function LoginForm() {
   return (
     <section className="flex flex-col gap-2 justify-center">
-      <h3 className="text-center">Connecte-toi</h3>
+      <h2 className="text-center ">Connecte-toi</h2>
       <form
         onSubmit={handleLogin}
         className="w-65 p-5 flex gap-8 flex-col justify-center items-center rounded-2xl border-2 shadow shadow-mainBorder  border-mainBorder"

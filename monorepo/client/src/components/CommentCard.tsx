@@ -23,11 +23,11 @@ export function CommentCard({
       key={id}
       className=" max-w-[60%] px-2 py-1 border-2 bg-secondTheme shadow-mainBorder shadow-sm border-mainBorder rounded-xl"
     >
-      <p className="text-[1.2rem] font-bold bg-linear-to-r/hsl from-[rgba(0, 0, 0, 0.10)] to-amber-800 bg-clip-text text-transparent">
+      <h3 className="text-[1.2rem] font-bold bg-linear-to-r/hsl from-[rgba(0, 0, 0, 0.10)] to-amber-800 bg-clip-text text-transparent">
         {user_name}
-      </p>
+      </h3>
       <p className="">{text}</p>
-      <p className="text-xs">{prettyDate}</p>
+      <p className="text-[11px] text-zinc-200">{prettyDate}</p>
     </div>
   );
 }

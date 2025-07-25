@@ -1,4 +1,3 @@
-// services/verifyToken.ts
 import { getDecodedToken } from "./checkAuth";
 
 export function verifyToken(req: any, res: any, next: any) {
