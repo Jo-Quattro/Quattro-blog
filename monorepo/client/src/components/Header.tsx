@@ -11,10 +11,10 @@ export function Header() {
         <Link to="/">Quattro-Blog</Link>
       </h1>
 
-      <nav className="flex flex-col sm:flex-row gap-2">
+      <nav className="flex flex-col sm:flex-row items-center gap-2">
         <Link
           to="/create/article"
-          className="rounded border-2 border-buttonBorder bg-secondTheme  px-2 active:brightness-90 active:border-cyan-900"
+          className="rounded w-32 border-2 border-buttonBorder bg-secondTheme  px-2 active:brightness-90 active:border-cyan-900"
         >
           Crée ton article
         </Link>
@@ -24,7 +24,7 @@ export function Header() {
         ) : (
           <Link
             to="/connexionInscription"
-            className="text-center rounded border-2 border-buttonBorder bg-secondTheme  px-2 active:brightness-90 active:border-cyan-900"
+            className="text-center w-32 rounded border-2 border-buttonBorder bg-secondTheme  px-2 active:brightness-90 active:border-cyan-900"
           >
             Connexion
           </Link>
