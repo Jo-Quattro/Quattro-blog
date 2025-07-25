@@ -31,9 +31,9 @@ a,
 button {
   font-family: var(--accent-font);
 }
-p {
+/* p {
   color: var(--text-color);
-}
+} */
 h1,
 h2,
 h3 {

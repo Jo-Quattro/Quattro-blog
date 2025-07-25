@@ -15,7 +15,7 @@ export function AddComment({ article_id }: { article_id: number }) {
         />
         <button
           type="submit"
-          className="rounded border-2 font-semibold border-buttonBorder bg-secondTheme w-fit px-2 active:brightness-90 active:border-cyan-900"
+          className="rounded w-32 border-2 border-buttonBorder bg-secondTheme  px-2  font-semibold active:brightness-90 active:border-cyan-900"
         >
           Commenter
         </button>

@@ -31,7 +31,9 @@ export function CommentSection() {
 
   return (
     <section className="w-[95%] md:w-[70%]">
-      <h2 className="text-center my-5 font-bold">Commentaires :</h2>
+      <h2 className="m-auto w-fit text-[2rem] my-5 font-bold bg-linear-to-r/hsl from-[rgba(0, 0, 0, 0.10)] to-amber-800 bg-clip-text text-transparent">
+        Commentaires :
+      </h2>
       {comments.length === 0 ? (
         <p className="p-4 text-gray-500">Aucun commentaire pour l’instant.</p>
       ) : (
