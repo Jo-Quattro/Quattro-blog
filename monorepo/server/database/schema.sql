@@ -9,7 +9,8 @@ CREATE TABLE user (
 CREATE TABLE article (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   preview_img VARCHAR(255) NOT NULL,
-  title VARCHAR(255) NOT NULL,
+  /* 75 char max to fit in the article card */
+  title VARCHAR(75) NOT NULL,
   content TEXT NOT NULL,
   creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   modification_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -33,7 +34,7 @@ insert into user (id, name, email, password, is_admin)
   (1,"Jordan", "Jordan.Aulagnier@gmail.com", "$argon2id$v=19$m=65536,t=3,p=4$qzhoFHVxUr7iupTRMpUXEw$yBIvUMFryP4WHCMGipDN4Sa6tPqFnoZnu2N9anPWta8", true);
 
 
--- Table user (inchangée, juste reprise ici)
+
 INSERT INTO user (id, name, email, password, is_admin) VALUES
 (2, "Alice", "alice.martin@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
 (3, "Lucas", "lucas.dupont@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
