@@ -14,9 +14,7 @@ import {
   readCommentsArticle,
 } from "./controllers/commentController";
 import { verifyToken } from "./services/verifyToken";
-import { checkAuth } from "./services/checkAuth";
 
-/* const upload = multer(); */
 //TODO NEXT ADD MULTER MIDDLEWARE
 
 const router = express.Router();
@@ -29,12 +27,10 @@ router.get("/api/comments/:id", readCommentsArticle);
 
 router.post("/api/login", login);
 router.post("/api/logout", logout);
-router.post(
-  "/api/create/article",
-  verifyToken /* , upload.none() */,
-  addArticle
-);
+router.post("/api/create/article", verifyToken, addArticle);
 router.post("/api/comments", verifyToken, addComment);
-router.get("/api/auth", checkAuth);
+router.get("/api/auth", verifyToken, (req: any, res: any) => {
+  return res.status(200).json({ user: req.user });
+});
 
 export default router;

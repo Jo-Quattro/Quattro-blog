@@ -7,6 +7,7 @@ type Article = {
   id: number;
   title: string;
   content: string;
+  preview_img: string;
 };
 
 export function Article() {
@@ -31,13 +32,24 @@ export function Article() {
     fetchArticle();
   }, []);
 
-  if (!article) return <div>Chargement...</div>;
+  if (!article) return <div>Article indisponible</div>;
 
   return (
     <>
-      <article className="flex flex-col items-center gap-5 py-10 prose w-[90%] mx-auto ">
-        <h1>{article.title}</h1>
-        <div dangerouslySetInnerHTML={{ __html: article.content }} />
+      <article className="flex flex-col items-center gap-5 py-10 prose mx-auto ">
+        <h1 className="text-[2rem] font-bold px-3 bg-linear-to-r/hsl from-[rgba(0, 0, 0, 0.10)] to-amber-800 bg-clip-text text-transparent ">
+          {article.title}
+        </h1>
+        <img
+          src={article.preview_img}
+          alt={article.title}
+          className="h-30 w-[95%] object-cover border rounded-2xl border-mainBorder shadow shadow-mainBorder hover:h-170  transition-[height] duration-500 ease-in-out"
+        />
+        <div
+          dangerouslySetInnerHTML={{ __html: article.content }}
+          className="border-3 text-center rounded-2xl border-mainBorder shadow-mainBorder shadow-md mx-2 p-5 text-xl
+          [&_img]:border-1 [&_img]:border-buttonBorder [&_img]:rounded-lg [&_img]:max-w-[80%] [&_img]:h-auto [&_img]:mx-auto"
+        />
         <CommentSection />
         <AddComment article_id={article.id} />
       </article>

@@ -1,18 +1,11 @@
-import jwt from "jsonwebtoken";
+// services/verifyToken.ts
+import { getDecodedToken } from "./checkAuth";
 
-const APP_SECRET = process.env.APP_SECRET || "dev-secret";
-
-export const verifyToken = (req: any, res: any, next: any) => {
-  const token = req.cookies.token;
-  if (!token) {
-    return res.status(401).json({ message: "Aucun token !" });
-  }
-
+export function verifyToken(req: any, res: any, next: any) {
   try {
-    req.user = jwt.verify(token, APP_SECRET);
-    console.info("authenfied successfully");
+    req.user = getDecodedToken(req);
     return next();
-  } catch {
-    return res.status(401).json({ message: "Token invalide ou expiré !" });
+  } catch (err: any) {
+    return res.status(err.status || 401).json({ message: err.message });
   }
-};
+}

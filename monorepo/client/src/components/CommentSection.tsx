@@ -30,20 +30,24 @@ export function CommentSection() {
   }, [articleID]);
 
   return (
-    <section className="flex flex-col items-center">
-      <h3 className="w-[90%] text-left">Commentaires :</h3>
-      <div className="w-[90%] flex flex-col rounded-xl  border-3 border-mainBorder shadow-mainBorder shadow-md">
-        {comments.map((comment, idx) => (
-          <div
-            key={comment.id}
-            className={`flex w-full p-3  ${
-              idx % 2 === 0 ? "justify-start" : "justify-end"
-            }`}
-          >
-            <CommentCard {...comment} />
-          </div>
-        ))}
-      </div>
+    <section className="w-[95%] md:w-[70%]">
+      <h3 className="text-center my-5 font-bold">Commentaires :</h3>
+      {comments.length === 0 ? (
+        <p className="p-4 text-gray-500">Aucun commentaire pour l’instant.</p>
+      ) : (
+        <div className="flex flex-col rounded-xl border-2 border-mainBorder shadow-mainBorder shadow-md">
+          {comments.map((comment, idx) => (
+            <div
+              key={comment.id}
+              className={`flex w-full p-3 ${
+                idx % 2 === 0 ? "justify-start" : "justify-end"
+              }`}
+            >
+              <CommentCard {...comment} />
+            </div>
+          ))}
+        </div>
+      )}
     </section>
   );
 }

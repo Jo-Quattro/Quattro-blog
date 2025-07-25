@@ -17,6 +17,7 @@ export function CreateArticle() {
     const form = event.currentTarget;
     const formData = new FormData(form);
     const title = formData.get("title") as string;
+    const preview_img = formData.get("preview_img") as string;
 
     const res = await fetch(`${baseURL}/api/create/article`, {
       method: "POST",
@@ -24,7 +25,7 @@ export function CreateArticle() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ title, content: htmlContent }),
+      body: JSON.stringify({ title, preview_img, content: htmlContent }),
     });
 
     if (res.ok) {
@@ -44,15 +45,6 @@ export function CreateArticle() {
     }
   }, [isAuth, navigate]);
 
-  if (isAuth === null) {
-    return <p className="text-center mt-10">Chargement...</p>;
-  }
-
-  if (!isAuth) return null;
-  if (isAuth === null) {
-    return <p className="text-center mt-10">Chargement...</p>; // au cas où
-  }
-
   return (
     <section className="py-10 flex flex-col items-center gap-5">
       <h2 className="text-center">Crée ton article personnalisé</h2>
@@ -62,12 +54,20 @@ export function CreateArticle() {
         className="w-full max-w-4xl flex flex-col items-center gap-5"
       >
         <input
+          aria-label="Preview image"
+          name="preview_img"
+          placeholder="Lien de ton image d'entête"
+          required
+          className="border-2 pl-1 border-mainBorder bg-amber-50 rounded w-[35%]"
+          type="text"
+        />
+        <input
           aria-label="Article title"
           type="text"
           name="title"
           placeholder="Titre de l'article"
           required
-          className="border-2 pl-1 border-mainBorder bg-amber-50 rounded w-full"
+          className="border-2 pl-1 border-mainBorder bg-amber-50 rounded w-[35%]"
         />
 
         <QuillEditor value={htmlContent} onChange={setHtmlContent} />

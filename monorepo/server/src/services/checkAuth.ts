@@ -1,16 +1,19 @@
 import jwt from "jsonwebtoken";
+
 const APP_SECRET = process.env.APP_SECRET || "dev-secret";
 
-export const checkAuth = (req: any, res: any) => {
-  const token = req.cookies.token;
+export function getDecodedToken(req: any) {
+  const token = req.cookies?.token;
   if (!token) {
-    return res.status(401).json({ message: "Aucun token" });
+    const err = new Error("No token");
+    (err as any).status = 401;
+    throw err;
   }
-
   try {
-    const decoded = jwt.verify(token, APP_SECRET);
-    return res.status(200).json({ user: decoded });
+    return jwt.verify(token, APP_SECRET);
   } catch {
-    return res.status(401).json({ message: "Token invalide ou expiré" });
+    const err = new Error("Invalid or expired token");
+    (err as any).status = 401;
+    throw err;
   }
-};
+}
