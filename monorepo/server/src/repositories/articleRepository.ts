@@ -9,15 +9,16 @@ interface Article {
 }
 interface ArticleInput {
   title: string;
+  preview_img: string;
   content: string;
   user_id: number;
 }
 //CREATE
 class articleRepository {
-  async createArticle({ title, content, user_id }: ArticleInput) {
+  async createArticle({ title, preview_img, content, user_id }: ArticleInput) {
     const [result] = await databaseClient.query<Result>(
-      "insert into article (title, content, user_id) values (?, ?, ?)",
-      [title, content, user_id]
+      "insert into article (title, preview_img, content, user_id) values (?, ?, ?, ?)",
+      [title, preview_img, content, user_id]
     );
     return result.insertId;
   }
@@ -25,14 +26,14 @@ class articleRepository {
   //READs
   async readAllArticles() {
     const [rows] = await databaseClient.query<Rows>(
-      "select id, title, content from article"
+      "select id, preview_img, title, content from article"
     );
     return rows as Article[];
   }
 
   async readSingleArticle(id: number) {
     const [rows] = await databaseClient.query<Rows>(
-      "select id, title, content from article where id = ?",
+      "select id, preview_img, title, content from article where id = ?",
       [id]
     );
     return rows[0] as Article;

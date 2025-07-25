@@ -8,6 +8,7 @@ CREATE TABLE user (
 
 CREATE TABLE article (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  preview_img VARCHAR(255) NOT NULL,
   title VARCHAR(255) NOT NULL,
   content TEXT NOT NULL,
   creation_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -31,73 +32,386 @@ insert into user (id, name, email, password, is_admin)
   values
   (1,"Jordan", "Jordan.Aulagnier@gmail.com", "$argon2id$v=19$m=65536,t=3,p=4$qzhoFHVxUr7iupTRMpUXEw$yBIvUMFryP4WHCMGipDN4Sa6tPqFnoZnu2N9anPWta8", true);
 
-  -- Articles de voyage
-INSERT INTO article (title, content, user_id) VALUES
+
+-- Table user (inchangée, juste reprise ici)
+INSERT INTO user (id, name, email, password, is_admin) VALUES
+(2, "Alice Martin", "alice.martin@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
+(3, "Lucas Dupont", "lucas.dupont@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
+(4, "Sofia Nguyen", "sofia.nguyen@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
+(5, "Yassine Benali", "yassine.benali@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
+(6, "Emma Dubois", "emma.dubois@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
+(7, "Nicolas Lefevre", "nicolas.lefevre@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
+(8, "Isabelle Moreau", "isabelle.moreau@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
+(9, "Julien Bernard", "julien.bernard@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
+(10, "Camille Dubois", "camille.dubois@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
+(11, "Sophie Lambert", "sophie.lambert@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
+(12, "Thomas Girard", "thomas.girard@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
+(13, "Laura Fontaine", "laura.fontaine@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
+(14, "Antoine Rousseau", "antoine.rousseau@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
+(15, "Claire Dupont", "claire.dupont@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false),
+(16, "Alexandre Martin", "alexandre.martin@example.com", "$argon2id$v=19$m=65536,t=3,p=4$demo$demo", false);
+
+INSERT INTO article (title, content, user_id, preview_img) VALUES
+
 ('Découverte de Bali : Paradis Tropical',
-'<p>Bali est une île indonésienne connue pour ses <strong>plages paradisiaques</strong>, ses <em>temples sacrés</em> et sa culture vibrante.</p><p><img src=\"https://images.unsplash.com/photo-1537996194471-e657df975ab4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80\" alt=\"Plage de Bali\"></p><p>Ne manquez pas le temple d\\\'Uluwatu au coucher du soleil et les rizières en terrasses d\\\'Ubud.</p><p><strong>Conseil :</strong> Goûtez absolument le Nasi Goreng, un plat local délicieux !</p>', 1),
+'<p>Bali est une île indonésienne connue pour ses <strong>plages paradisiaques</strong>, ses <em>temples sacrés</em> et sa culture vibrante.</p><p><img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Plage de Bali"></p><p>Ne manquez pas le temple d\'Uluwatu au coucher du soleil et les rizières en terrasses d\'Ubud.</p><p><strong>Conseil :</strong> Goûtez absolument le Nasi Goreng, un plat local délicieux !</p>',
+1,
+'https://images.unsplash.com/photo-1537996194471-e657df975ab4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'),
 
-( 'Road Trip en Islande : Entre Feu et Glace',
-'<p>L’Islande offre des paysages à couper le souffle : <strong>cascades majestueuses</strong>, <em>volcans actifs</em> et <u>glaciers impressionnants</u>.</p>
-<p><img src="https://cdn.pixabay.com/photo/2020/04/28/12/54/iceland-5104370_1280.jpg" alt="Paysage islandais" width="500"></p>
-<p><strong>Notre itinéraire préféré :</strong></p>
-<ol>
-<li>Reykjavik - La capitale colorée</li>
-<li>Le Cercle d’Or (Geysir, Gullfoss, Þingvellir)</li>
-<li>La côte sud avec ses plages de sable noir</li>
-<li>Le lac glaciaire Jökulsárlón</li>
-<li>Les fjords de l’Est</li>
-</ol>
-<p><strong>Conseils pratiques :</strong></p>
-<ul>
-<li>Prévoyez des vêtements chauds et imperméables</li>
-<li>Louez un 4x4 pour les routes de montagne</li>
-<li>Réservez les hébergements à l’avance en haute saison</li>
-<li>Goûtez le skyr, le fromage blanc islandais</li>
-</ul>
-<p><em>À ne pas manquer :</em> Les aurores boréales en hiver et le soleil de minuit en été !</p>', 1),
+('Road Trip en Islande : Entre Feu et Glace',
+'<p>L’Islande offre des paysages à couper le souffle : <strong>cascades majestueuses</strong>, <em>volcans actifs</em> et <u>glaciers impressionnants</u>.</p><p><img src="https://cdn.pixabay.com/photo/2020/04/28/12/54/iceland-5104370_1280.jpg" alt="Paysage islandais" width="500"></p><p><strong>Notre itinéraire préféré :</strong></p><ol><li>Reykjavik - La capitale colorée</li><li>Le Cercle d’Or (Geysir, Gullfoss, Þingvellir)</li><li>La côte sud avec ses plages de sable noir</li><li>Le lac glaciaire Jökulsárlón</li><li>Les fjords de l’Est</li></ol><p><strong>Conseils pratiques :</strong></p><ul><li>Prévoyez des vêtements chauds et imperméables</li><li>Louez un 4x4 pour les routes de montagne</li><li>Réservez les hébergements à l’avance en haute saison</li><li>Goûtez le skyr, le fromage blanc islandais</li></ul><p><em>À ne pas manquer :</em> Les aurores boréales en hiver et le soleil de minuit en été !</p>',
+1,
+'https://cdn.pixabay.com/photo/2020/04/28/12/54/iceland-5104370_1280.jpg'),
 
+('Croisière en Méditerranée : Escales Inoubliables',
+'<p>Une croisière en Méditerranée vous permettra de découvrir plusieurs pays en un seul voyage.</p><p><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Croisière en Méditerranée"></p><p>Nos escales préférées :</p><ol><li>Barcelone, Espagne</li><li>Santorin, Grèce</li><li>Dubrovnik, Croatie</li><li>Venise, Italie</li></ol><p><em>Conseil :</em> Prévoyez des vêtements légers pour les journées ensoleillées et une veste pour les soirées fraîches.</p>',
+1,
+'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'),
 
-
-('Croisière en Méditerranée : Escales Inoubliables','<p>Une croisière en Méditerranée vous permettra de découvrir plusieurs pays en un seul voyage.</p><p><img src=\"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80\" alt=\"Croisière en Méditerranée\"></p><p>Nos escales préférées :</p><ol><li>Barcelone, Espagne</li><li>Santorin, Grèce</li><li>Dubrovnik, Croatie</li><li>Venise, Italie</li></ol><p><em>Conseil :</em> Prévoyez des vêtements légers pour les journées ensoleillées et une veste pour les soirées fraîches.</p>', 1),
-
-( 'Les Meilleurs Cafés de Paris','
-<p>Paris regorge de cafés charmants où l’on peut déguster un excellent café tout en profitant de l’ambiance parisienne.</p>
-<p><img src="https://images.unsplash.com/photo-1517705008128-361805f42e86" alt="Café parisien" width="500"></p>
-<p><strong>Nos coups de cœur :</strong></p>
-<ol>
-<li><strong>Café de Flore</strong> - Un classique historique du quartier Saint-Germain</li>
-<li><em>Holybelly</em> - Pour un brunch délicieux dans une ambiance décontractée</li>
-<li>Boot Café - Un petit café cosy près du Canal Saint-Martin</li>
-<li>Coutume Café - Pour les amateurs de café de spécialité</li>
-<li>Le Comptoir du Relais - Un café-restaurant typiquement parisien</li>
-</ol>
-<p>N’hésitez pas à essayer les pâtisseries françaises qui accompagnent souvent le café !</p>
-<p><em>Conseil :</em> Les cafés parisiens sont souvent plus animés en terrasse qu’à l’intérieur.</p>', 1),
+('Les Meilleurs Cafés de Paris',
+'<p>Paris regorge de cafés charmants où l’on peut déguster un excellent café tout en profitant de l’ambiance parisienne.</p><p><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Café parisien" width="500"></p><p><strong>Nos coups de cœur :</strong></p><ol><li><strong>Café de Flore</strong> - Un classique historique du quartier Saint-Germain</li><li><em>Holybelly</em> - Pour un brunch délicieux dans une ambiance décontractée</li><li>Boot Café - Un petit café cosy près du Canal Saint-Martin</li><li>Coutume Café - Pour les amateurs de café de spécialité</li><li>Le Comptoir du Relais - Un café-restaurant typiquement parisien</li></ol><p>N’hésitez pas à essayer les pâtisseries françaises qui accompagnent souvent le café !</p><p><em>Conseil :</em> Les cafés parisiens sont souvent plus animés en terrasse qu’à l’intérieur.</p>',
+1,
+'https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
 
 ('Recette de Tiramisu Facile',
-'
-<p>Le tiramisu est un dessert italien délicieux et facile à préparer.</p>
-<p><img src="https://cdn.pixabay.com/photo/2017/10/28/19/07/tiramisu-2897900_1280.jpg" alt="Tiramisu" width="500"></p>
-<p><strong>Ingrédients :</strong></p>
-<ul>
-<li>250g de mascarpone</li>
-<li>3 œufs</li>
-<li>100g de sucre</li>
-<li>24 biscuits à la cuillère</li>
-<li>250ml de café fort</li>
-<li>2 cuillères à soupe de cacao en poudre</li>
-</ul>
-<p><strong>Préparation :</strong></p>
-<ol>
-<li>Séparer les blancs des jaunes d’œufs</li>
-<li>Mélanger les jaunes avec le sucre jusqu’à ce que le mélange blanchisse</li>
-<li>Ajouter le mascarpone et mélanger</li>
-<li>Monter les blancs en neige et les incorporer délicatement</li>
-<li>Tremper rapidement les biscuits dans le café et les disposer dans un plat</li>
-<li>Recouvrir d’une couche de crème, puis répéter l’opération</li>
-<li>Saupoudrer de cacao et réfrigérer au moins 4 heures</li>
-</ol>
-<p><em>Astuce :</em> Pour une version sans alcool, remplacez le café par du jus d’orange.</p>', 1),
+'<p>Le tiramisu est un dessert italien délicieux et facile à préparer.</p><p><img src="https://cdn.pixabay.com/photo/2017/10/28/19/07/tiramisu-2897900_1280.jpg" alt="Tiramisu" width="500"></p><p><strong>Ingrédients :</strong></p><ul><li>250g de mascarpone</li><li>3 œufs</li><li>100g de sucre</li><li>24 biscuits à la cuillère</li><li>250ml de café fort</li><li>2 cuillères à soupe de cacao en poudre</li></ul><p><strong>Préparation :</strong></p><ol><li>Séparer les blancs des jaunes d’œufs</li><li>Mélanger les jaunes avec le sucre jusqu’à ce que le mélange blanchisse</li><li>Ajouter le mascarpone et mélanger</li><li>Monter les blancs en neige et les incorporer délicatement</li><li>Tremper rapidement les biscuits dans le café et les disposer dans un plat</li><li>Recouvrir d’une couche de crème, puis répéter l’opération</li><li>Saupoudrer de cacao et réfrigérer au moins 4 heures</li></ol><p><em>Astuce :</em> Pour une version sans alcool, remplacez le café par du jus d’orange.</p>',
+1,
+'https://cdn.pixabay.com/photo/2017/10/28/19/07/tiramisu-2897900_1280.jpg'),
 
 ('Top 5 des Films à Voir en 2023',
-'<p>Voici notre sélection des meilleurs films sortis en 2023 :</p><p><img src=\"https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80\" alt=\"Cinéma\"></p><ol><li><strong>Oppenheimer</strong> - Un biopic captivant sur le père de la bombe atomique</li><li><em>Barbie</em> - Une comédie colorée et pleine de sens</li><li>Killers of the Flower Moon - Un drame historique puissant</li><li>The Super Mario Bros. Movie - Pour les amateurs de jeux vidéo</li><li>Poor Things - Une comédie noire originale</li></ol><p>Quel est votre film préféré de cette année ? Partagez-le en commentaire !</p>', 1);
+'<p>Voici notre sélection des meilleurs films sortis en 2023 :</p><p><img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Cinéma"></p><ol><li><strong>Oppenheimer</strong> - Un biopic captivant sur le père de la bombe atomique</li><li><em>Barbie</em> - Une comédie colorée et pleine de sens</li><li>Killers of the Flower Moon - Un drame historique puissant</li><li>The Super Mario Bros. Movie - Pour les amateurs de jeux vidéo</li><li>Poor Things - Une comédie noire originale</li></ol><p>Quel est votre film préféré de cette année ? Partagez-le en commentaire !</p>',
+1,
+'https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80'),
+('Les Secrets de la Cuisine Thaïlandaise',
+'<p>La cuisine thaïlandaise est réputée pour ses saveurs équilibrées et ses ingrédients frais.</p><p><img src="https://images.unsplash.com/photo-1506781961370-37a89d6b3095?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Plat thaïlandais"></p><p>Découvrez des recettes authentiques comme le Pad Thaï et le Tom Yum.</p>',
+7,
+'https://images.unsplash.com/photo-1506781961370-37a89d6b3095?q=80&w=1548&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
+
+('Randonnée dans les Alpes Suisses',
+'<p>Les Alpes suisses offrent des paysages à couper le souffle pour les amateurs de randonnée.</p><p><img src="https://images.unsplash.com/photo-1521292270410-a8c4d716d518?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Paysage alpin"></p><p>Explorez des sentiers comme le Tour du Mont Blanc et le sentier de l\'Eiger.</p>',
+8,
+'https://images.unsplash.com/photo-1521292270410-a8c4d716d518?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
+
+('Guide des Vins de Bordeaux',
+'<p>Bordeaux est célèbre pour ses vins rouges riches et complexes.</p><p><img src="https://images.unsplash.com/photo-1676654420746-269a05c5fb37?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Vignoble de Bordeaux"></p><p>Apprenez à déguster et à choisir les meilleurs crus de la région.</p>',
+9,
+'https://images.unsplash.com/photo-1676654420746-269a05c5fb37?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
+
+('Les Plages Cachées de la Côte d\'Azur',
+'<p>La Côte d\'Azur regorge de plages secrètes loin de la foule.</p><p><img src="https://images.unsplash.com/photo-1578240749366-a1d3b6c39cb4?q=80&w=3136&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Plage secrète"></p><p>Découvrez des criques isolées et des eaux cristallines pour une escapade parfaite.</p>',
+10,
+'https://images.unsplash.com/photo-1578240749366-a1d3b6c39cb4?q=80&w=3136&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
+
+('Voyage en Train à Travers l\'Europe',
+'<p>Le voyage en train est une manière écologique et pittoresque de découvrir l\'Europe.</p><p><img src="https://plus.unsplash.com/premium_photo-1676122795719-6fa9374a46c5?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Train européen"></p><p>Planifiez votre itinéraire à travers des villes emblématiques et des paysages variés.</p>',
+11,
+'https://plus.unsplash.com/premium_photo-1676122795719-6fa9374a46c5?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
+
+('Les Meilleurs Festivals de Musique en France',
+'<p>La France accueille de nombreux festivals de musique tout au long de l\'année.</p><p><img src="https://images.unsplash.com/photo-1519677100203-a0e668c92439" alt="Festival de musique"></p><p>Découvrez les événements incontournables comme les Vieilles Charrues et Rock en Seine.</p>',
+12,
+'https://images.unsplash.com/photo-1519677100203-a0e668c92439'),
+
+('Escapade Romantique à Venise',
+'<p>Venise est la destination idéale pour une escapade romantique.</p><p><img src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?q=80&w=983&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Gondole à Venise"></p><p>Profitez d\'une balade en gondole et découvrez les charmes de la ville des amoureux.</p>',
+13,
+'https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?q=80&w=983&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
+
+('Les Délices de la Pâtisserie Française',
+'<p>La pâtisserie française est renommée pour sa finesse et sa diversité.</p><p><img src="https://images.unsplash.com/photo-1567941723610-db0bcb4cca67?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Pâtisseries françaises"></p><p>Apprenez à réaliser des classiques comme les éclairs et les macarons.</p>',
+14,
+'https://images.unsplash.com/photo-1567941723610-db0bcb4cca67?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
+
+('Safari en Afrique du Sud : Conseils et Astuces',
+'<p>Un safari en Afrique du Sud est une expérience inoubliable pour les amoureux de la faune.</p><p><img src="https://images.unsplash.com/photo-1576485375217-d6a95e34d043?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Safari en Afrique"></p><p>Découvrez les meilleurs parcs nationaux et préparez votre aventure.</p>',
+15,
+'https://images.unsplash.com/photo-1576485375217-d6a95e34d043?q=80&w=987&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
+
+('Les Secrets de la Cuisine Japonaise',
+'<p>La cuisine japonaise est un art qui allie tradition et modernité.</p><p><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4" alt="Sushi japonais"></p><p>Explorez des recettes emblématiques comme les sushis et les ramens.</p>',
+16,
+'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4'),
+
+('Les Plus Belles Randonnées en Patagonie',
+'<p>La Patagonie offre des paysages époustouflants pour les randonneurs.</p><p><img src="https://images.unsplash.com/photo-1575819453111-abb276cd4973?q=80&w=1035&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Paysage de Patagonie"></p><p>Parcourez des sentiers comme le W Trek et le Fitz Roy.</p>',
+7,
+'https://images.unsplash.com/photo-1575819453111-abb276cd4973?q=80&w=1035&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
+
+('Découverte des Marchés de Noël en Allemagne',
+'<p>Les marchés de Noël allemands sont une tradition festive incontournable.</p><p><img src="https://plus.unsplash.com/premium_photo-1701454740269-633e9e0a3912?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Marché de Noël"></p><p>Visitez des marchés célèbres comme ceux de Nuremberg et de Cologne.</p>',
+8,
+'https://plus.unsplash.com/premium_photo-1701454740269-633e9e0a3912?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
+
+('Les Meilleurs Spots de Surf au Portugal',
+'<p>Le Portugal est une destination prisée des surfeurs du monde entier.</p><p><img src="https://images.unsplash.com/photo-1511968822213-92de73315bba?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Surf au Portugal"></p><p>Découvrez des spots légendaires comme Nazaré et Peniche.</p>',
+9,
+'https://images.unsplash.com/photo-1511968822213-92de73315bba?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
+
+('Road Trip sur la Côte Ouest des États-Unis',
+'<p>La côte ouest des États-Unis offre des paysages variés pour un road trip mémorable.</p><p><img src="https://images.unsplash.com/photo-1549399541-337e17f70ad7?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Route en Californie"></p><p>Parcourez la Pacific Coast Highway et explorez des villes comme San Francisco et Los Angeles.</p>',
+10,
+'https://images.unsplash.com/photo-1549399541-337e17f70ad7?q=80&w=1587&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
+
+('Les Trésors Cachés de la Grèce',
+'<p>Au-delà des îles célèbres, la Grèce regorge de trésors méconnus.</p><p><img src="https://plus.unsplash.com/premium_photo-1661964149725-fbf14eabd38c?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Village grec"></p><p>Explorez des régions comme le Pélion et les Météores.</p>',
+11,
+'https://plus.unsplash.com/premium_photo-1661964149725-fbf14eabd38c?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
+
+('Initiation à la Plongée Sous-Marine en Égypte',
+'<p>La mer Rouge est un paradis pour les plongeurs débutants et expérimentés.</p><p><img src="https://images.unsplash.com/photo-1651871756929-09d7bde4e97d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Plongée en mer Rouge"></p><p>Découvrez des sites comme Sharm el-Sheikh et Hurghada.</p>',
+12,
+'https://images.unsplash.com/photo-1651871756929-09d7bde4e97d?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
+
+('Les Plus Beaux Châteaux de la Loire',
+'<p>La vallée de la Loire est célèbre pour ses châteaux majestueux.</p><p><img src="https://images.unsplash.com/photo-1656092139876-578beda26039?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Château de la Loire"></p><p>Visitez des joyaux comme Chambord et Chenonceau.</p>',
+13,
+'https://images.unsplash.com/photo-1656092139876-578beda26039?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
+
+('Voyage Culinaire en Inde : Saveurs et Épices',
+'<p>La cuisine indienne est un festival de saveurs et d\'épices.</p><p><img src="https://images.unsplash.com/photo-1672477179695-7276b0602fa9?q=80&w=1626&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Plat indien"></p><p>Explorez des spécialités régionales comme le curry du Kerala et le biryani d\'Hyderabad.</p>',
+14,
+'https://images.unsplash.com/photo-1672477179695-7276b0602fa9?q=80&w=1626&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
+
+('Les Meilleurs Parcs Nationaux aux États-Unis',
+'<p>Les États-Unis abritent des parcs nationaux aux paysages variés et spectaculaires.</p><p><img src="https://images.unsplash.com/photo-1527489377706-5bf97e608852?q=80&w=1859&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Parc national américain"></p><p>Découvrez des incontournables comme Yellowstone, Yosemite et le Grand Canyon.</p>',
+15,
+'https://images.unsplash.com/photo-1527489377706-5bf97e608852?q=80&w=1859&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'),
+
+('Les Traditions du Nouvel An en Chine',
+'<p>Le Nouvel An chinois est une fête riche en traditions et en festivités.</p><p><img src="https://images.unsplash.com/photo-1612672696056-770b18d7ba84?q=80&w=1744&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Nouvel An chinois"></p><p>Apprenez-en plus sur les coutumes, les plats typiques et les célébrations à travers le pays.</p>',
+16,
+'https://images.unsplash.com/photo-1612672696056-770b18d7ba84?q=80&w=1744&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+
+INSERT INTO comment (text, user_id, article_id) VALUES
+('Bali est vraiment magnifique, j’y suis allé l’été dernier !', 2, 1),
+('Merci pour les conseils de voyage, je note pour mon prochain trip !', 3, 1),
+('Le nasi goreng est incroyable, et les plages sont à couper le souffle.', 4, 1),
+('Ce temple au coucher du soleil doit être magique, super photo !', 5, 1),
+('Les rizières en terrasses d\'Ubud sont un must-see.', 6, 1),
+('J\'ai adoré le marché d\'Ubud, une expérience unique.', 7, 1),
+('Les habitants sont tellement accueillants, j\'ai hâte d\'y retourner.', 8, 1),
+('Le surf à Kuta Beach est une expérience inoubliable.', 9, 1),
+('Ton itinéraire est top ! Le cercle d’Or est magique.', 5, 2),
+('Islande = mon rêve ! Merci pour les adresses :)', 1, 2),
+('J’y vais en septembre, des conseils pour camper sur place ?', 6, 2),
+('J\'adore le skyr, j\'en ai mangé tous les jours là-bas !', 2, 2),
+('Les aurores boréales en hiver, c\'est à voir absolument.', 3, 2),
+('Les bains chauds naturels sont parfaits après une journée de randonnée.', 4, 2),
+('Les paysages sont à couper le souffle, surtout les fjords de l\'Est.', 7, 2),
+('Le Blue Lagoon est un incontournable, même s\'il est touristique.', 8, 2),
+('J’ai adoré Dubrovnik pendant ma croisière, je recommande !', 2, 3),
+('Super article, ça donne envie de partir tout de suite...', 3, 3),
+('Venise en bateau, c’était un rêve pour moi et ça l’a été !', 4, 3),
+('Les escales en Grèce sont magnifiques, surtout Santorin.', 5, 3),
+('La cuisine méditerranéenne à bord était délicieuse.', 6, 3),
+('Les animations sur le bateau étaient variées et pour tous les âges.', 7, 3),
+('Les excursions organisées étaient bien planifiées et intéressantes.', 8, 3),
+('Le personnel à bord était aux petits soins, un vrai plaisir.', 9, 3),
+('Holybelly, c’est vraiment le meilleur pour bruncher !', 4, 4),
+('Boot Café, une vraie pépite cachée, merci pour la reco.', 5, 4),
+('Je passe toujours au Café de Flore quand je suis à Paris.', 6, 4),
+('Il faut absolument goûter les viennoiseries chez Coutume Café.', 3, 4),
+('Le café chez Coutume est exceptionnel, surtout le flat white.', 7, 4),
+('Le service au Café de Flore est toujours impeccable.', 8, 4),
+('Boot Café est petit mais charmant, parfait pour une pause café.', 9, 4),
+('Holybelly propose des options végétariennes délicieuses.', 10, 4),
+('Testé hier soir avec des amis, on s’est régalés !', 3, 5),
+('Merci pour cette recette, super simple et délicieuse.', 2, 5),
+('Quel mascarpone tu conseilles ?', 1, 5),
+('Tu as déjà essayé avec du spéculoos à la place des biscuits ?', 4, 5),
+('J\'ai ajouté un peu de liqueur d\'amaretto, un délice.', 5, 5),
+('Peut-on préparer le tiramisu la veille ?', 6, 5),
+('Combien de temps se conserve le tiramisu au frigo ?', 7, 5),
+('Peut-on remplacer le café par du chocolat chaud pour les enfants ?', 8, 5),
+('J’ai adoré Oppenheimer !', 4, 6),
+('Barbie, un vrai moment de détente, trop cool.', 5, 6),
+('Il manque John Wick 4 ;) ', 6, 6),
+('Killers of the Flower Moon m’a vraiment marqué, tellement intense.', 2, 6),
+('The Super Mario Bros. Movie, un retour en enfance génial.', 3, 6),
+('Poor Things est une comédie noire surprenante, j\'ai adoré.', 7, 6),
+('J\'ai hâte de voir les prochains films de cette liste.', 8, 6),
+('Merci pour cette sélection, je vais organiser des soirées cinéma.', 9, 6),
+('Très inspirant, merci pour les infos !', 15, 7),
+('Je ne connaissais pas, ça donne envie de découvrir.', 16, 7),
+('Superbe photo en illustration !', 14, 7),
+('Merci pour les conseils pratiques.', 5, 7),
+('J’ajoute ça à ma liste de voyages !', 2, 7),
+('Tu m’as donné faim / envie de partir / envie d’essayer !', 6, 7),
+('Article clair et agréable à lire.', 12, 7),
+('Est-ce que tu prévois un guide plus détaillé ?', 3, 7),
+
+('Très inspirant, merci pour les infos !', 4, 8),
+('Je ne connaissais pas, ça donne envie de découvrir.', 5, 8),
+('Superbe photo en illustration !', 7, 8),
+('Merci pour les conseils pratiques.', 9, 8),
+('J’ajoute ça à ma liste de voyages !', 13, 8),
+('Tu m’as donné faim / envie de partir / envie d’essayer !', 11, 8),
+('Article clair et agréable à lire.', 2, 8),
+('Est-ce que tu prévois un guide plus détaillé ?', 10, 8),
+
+('Très inspirant, merci pour les infos !', 15, 9),
+('Je ne connaissais pas, ça donne envie de découvrir.', 6, 9),
+('Superbe photo en illustration !', 13, 9),
+('Merci pour les conseils pratiques.', 12, 9),
+('J’ajoute ça à ma liste de voyages !', 11, 9),
+('Tu m’as donné faim / envie de partir / envie d’essayer !', 10, 9),
+('Article clair et agréable à lire.', 9, 9),
+('Est-ce que tu prévois un guide plus détaillé ?', 7, 9),
+
+('Très inspirant, merci pour les infos !', 5, 10),
+('Je ne connaissais pas, ça donne envie de découvrir.', 14, 10),
+('Superbe photo en illustration !', 12, 10),
+('Merci pour les conseils pratiques.', 4, 10),
+('J’ajoute ça à ma liste de voyages !', 11, 10),
+('Tu m’as donné faim / envie de partir / envie d’essayer !', 15, 10),
+('Article clair et agréable à lire.', 3, 10),
+('Est-ce que tu prévois un guide plus détaillé ?', 6, 10),
+
+('Très inspirant, merci pour les infos !', 8, 11),
+('Je ne connaissais pas, ça donne envie de découvrir.', 14, 11),
+('Superbe photo en illustration !', 9, 11),
+('Merci pour les conseils pratiques.', 6, 11),
+('J’ajoute ça à ma liste de voyages !', 13, 11),
+('Tu m’as donné faim / envie de partir / envie d’essayer !', 7, 11),
+('Article clair et agréable à lire.', 15, 11),
+('Est-ce que tu prévois un guide plus détaillé ?', 4, 11),
+
+('Très inspirant, merci pour les infos !', 13, 12),
+('Je ne connaissais pas, ça donne envie de découvrir.', 6, 12),
+('Superbe photo en illustration !', 14, 12),
+('Merci pour les conseils pratiques.', 5, 12),
+('J’ajoute ça à ma liste de voyages !', 4, 12),
+('Tu m’as donné faim / envie de partir / envie d’essayer !', 15, 12),
+('Article clair et agréable à lire.', 7, 12),
+('Est-ce que tu prévois un guide plus détaillé ?', 3, 12),
+
+('Très inspirant, merci pour les infos !', 16, 13),
+('Je ne connaissais pas, ça donne envie de découvrir.', 13, 13),
+('Superbe photo en illustration !', 9, 13),
+('Merci pour les conseils pratiques.', 6, 13),
+('J’ajoute ça à ma liste de voyages !', 2, 13),
+('Tu m’as donné faim / envie de partir / envie d’essayer !', 14, 13),
+('Article clair et agréable à lire.', 4, 13),
+('Est-ce que tu prévois un guide plus détaillé ?', 10, 13),
+
+('Très inspirant, merci pour les infos !', 8, 14),
+('Je ne connaissais pas, ça donne envie de découvrir.', 2, 14),
+('Superbe photo en illustration !', 10, 14),
+('Merci pour les conseils pratiques.', 7, 14),
+('J’ajoute ça à ma liste de voyages !', 13, 14),
+('Tu m’as donné faim / envie de partir / envie d’essayer !', 5, 14),
+('Article clair et agréable à lire.', 6, 14),
+('Est-ce que tu prévois un guide plus détaillé ?', 4, 14),
+
+('Très inspirant, merci pour les infos !', 14, 15),
+('Je ne connaissais pas, ça donne envie de découvrir.', 9, 15),
+('Superbe photo en illustration !', 6, 15),
+('Merci pour les conseils pratiques.', 12, 15),
+('J’ajoute ça à ma liste de voyages !', 11, 15),
+('Tu m’as donné faim / envie de partir / envie d’essayer !', 7, 15),
+('Article clair et agréable à lire.', 5, 15),
+('Est-ce que tu prévois un guide plus détaillé ?', 10, 15),
+
+('Très inspirant, merci pour les infos !', 3, 16),
+('Je ne connaissais pas, ça donne envie de découvrir.', 5, 16),
+('Superbe photo en illustration !', 11, 16),
+('Merci pour les conseils pratiques.', 4, 16),
+('J’ajoute ça à ma liste de voyages !', 13, 16),
+('Tu m’as donné faim / envie de partir / envie d’essayer !', 10, 16),
+('Article clair et agréable à lire.', 6, 16),
+('Est-ce que tu prévois un guide plus détaillé ?', 9, 16),
+
+('Très inspirant, merci pour les infos !', 12, 17),
+('Je ne connaissais pas, ça donne envie de découvrir.', 6, 17),
+('Superbe photo en illustration !', 2, 17),
+('Merci pour les conseils pratiques.', 15, 17),
+('J’ajoute ça à ma liste de voyages !', 10, 17),
+('Tu m’as donné faim / envie de partir / envie d’essayer !', 4, 17),
+('Article clair et agréable à lire.', 3, 17),
+('Est-ce que tu prévois un guide plus détaillé ?', 5, 17),
+
+('Très inspirant, merci pour les infos !', 13, 18),
+('Je ne connaissais pas, ça donne envie de découvrir.', 14, 18),
+('Superbe photo en illustration !', 4, 18),
+('Merci pour les conseils pratiques.', 2, 18),
+('J’ajoute ça à ma liste de voyages !', 10, 18),
+('Tu m’as donné faim / envie de partir / envie d’essayer !', 6, 18),
+('Article clair et agréable à lire.', 5, 18),
+('Est-ce que tu prévois un guide plus détaillé ?', 3, 18),
+
+('Très inspirant, merci pour les infos !', 9, 19),
+('Je ne connaissais pas, ça donne envie de découvrir.', 4, 19),
+('Superbe photo en illustration !', 5, 19),
+('Merci pour les conseils pratiques.', 10, 19),
+('J’ajoute ça à ma liste de voyages !', 7, 19),
+('Tu m’as donné faim / envie de partir / envie d’essayer !', 2, 19),
+('Article clair et agréable à lire.', 3, 19),
+('Est-ce que tu prévois un guide plus détaillé ?', 14, 19),
+
+('Très inspirant, merci pour les infos !', 11, 20),
+('Je ne connaissais pas, ça donne envie de découvrir.', 5, 20),
+('Superbe photo en illustration !', 3, 20),
+('Merci pour les conseils pratiques.', 10, 20),
+('J’ajoute ça à ma liste de voyages !', 2, 20),
+('Tu m’as donné faim / envie de partir / envie d’essayer !', 14, 20),
+('Article clair et agréable à lire.', 13, 20),
+('Est-ce que tu prévois un guide plus détaillé ?', 7, 20),
+
+('Très inspirant, merci pour les infos !', 5, 21),
+('Je ne connaissais pas, ça donne envie de découvrir.', 14, 21),
+('Superbe photo en illustration !', 10, 21),
+('Merci pour les conseils pratiques.', 2, 21),
+('J’ajoute ça à ma liste de voyages !', 11, 21),
+('Tu m’as donné faim / envie de partir / envie d’essayer !', 9, 21),
+('Article clair et agréable à lire.', 8, 21),
+('Est-ce que tu prévois un guide plus détaillé ?', 7, 21),
+
+('Très inspirant, merci pour les infos !', 12, 22),
+('Je ne connaissais pas, ça donne envie de découvrir.', 14, 22),
+('Superbe photo en illustration !', 10, 22),
+('Merci pour les conseils pratiques.', 3, 22),
+('J’ajoute ça à ma liste de voyages !', 9, 22),
+('Tu m’as donné faim / envie de partir / envie d’essayer !', 6, 22),
+('Article clair et agréable à lire.', 7, 22),
+('Est-ce que tu prévois un guide plus détaillé ?', 2, 22),
+
+('Très inspirant, merci pour les infos !', 9, 23),
+('Je ne connaissais pas, ça donne envie de découvrir.', 6, 23),
+('Superbe photo en illustration !', 3, 23),
+('Merci pour les conseils pratiques.', 11, 23),
+('J’ajoute ça à ma liste de voyages !', 5, 23),
+('Tu m’as donné faim / envie de partir / envie d’essayer !', 10, 23),
+('Article clair et agréable à lire.', 2, 23),
+('Est-ce que tu prévois un guide plus détaillé ?', 7, 23),
+
+('Très inspirant, merci pour les infos !', 15, 24),
+('Je ne connaissais pas, ça donne envie de découvrir.', 2, 24),
+('Superbe photo en illustration !', 13, 24),
+('Merci pour les conseils pratiques.', 10, 24),
+('J’ajoute ça à ma liste de voyages !', 6, 24),
+('Tu m’as donné faim / envie de partir / envie d’essayer !', 4, 24),
+('Article clair et agréable à lire.', 12, 24),
+('Est-ce que tu prévois un guide plus détaillé ?', 3, 24),
+
+('Très inspirant, merci pour les infos !', 6, 25),
+('Je ne connaissais pas, ça donne envie de découvrir.', 15, 25),
+('Superbe photo en illustration !', 4, 25),
+('Merci pour les conseils pratiques.', 7, 25),
+('J’ajoute ça à ma liste de voyages !', 10, 25),
+('Tu m’as donné faim / envie de partir / envie d’essayer !', 13, 25),
+('Article clair et agréable à lire.', 3, 25),
+('Est-ce que tu prévois un guide plus détaillé ?', 2, 25),
+
+('Très inspirant, merci pour les infos !', 5, 26),
+('Je ne connaissais pas, ça donne envie de découvrir.', 10, 26),
+('Superbe photo en illustration !', 2, 26),
+('Merci pour les conseils pratiques.', 15, 26),
+('J’ajoute ça à ma liste de voyages !', 3, 26),
+('Tu m’as donné faim / envie de partir / envie d’essayer !', 6, 26),
+('Article clair et agréable à lire.', 7, 26),
+('Est-ce que tu prévois un guide plus détaillé ?', 11, 26);
+
+
+
+
+

@@ -39,7 +39,7 @@ const addArticle: RequestHandler = async (req, res, next) => {
       id: number;
     };
 
-    const { title, content } = req.body;
+    const { title, preview_img, content } = req.body;
     const user_id = decoded.id;
     console.info(user_id);
 
@@ -47,7 +47,12 @@ const addArticle: RequestHandler = async (req, res, next) => {
       res.status(400).json({ message: "Champs manquants" });
     }
 
-    await articleRepository.createArticle({ title, content, user_id });
+    await articleRepository.createArticle({
+      title,
+      preview_img,
+      content,
+      user_id,
+    });
 
     res.status(201).json({ message: "Article créé avec succès" });
   } catch (err) {
