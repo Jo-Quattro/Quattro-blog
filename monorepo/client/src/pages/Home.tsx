@@ -7,6 +7,7 @@ interface Articles {
   title: string;
   content: string;
   preview_img: string;
+  username: string;
 }
 export function Home() {
   const baseURL = import.meta.env.VITE_API_URL;
@@ -29,6 +30,7 @@ export function Home() {
             <ArticleCard
               title={article.title}
               preview_img={article.preview_img}
+              username={article.username}
             />
           </Link>
         ))}
