@@ -18,6 +18,7 @@ class CommentRepository {
   async readCommentsArticle({ article_id }: { article_id: number }) {
     const [result] = await databaseClient.query<Result>(
       `SELECT 
+        comment.id,
         comment.text, 
         comment.creation_date, 
         user.name AS user_name, 

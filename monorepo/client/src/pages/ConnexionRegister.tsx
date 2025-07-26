@@ -1,5 +1,5 @@
-import { LoginForm } from "../components/LoginForm";
-import { RegisterForm } from "../components/RegisterForm";
+import { LoginForm } from "../components/auth//LoginForm";
+import { RegisterForm } from "../components/user/RegisterForm";
 
 export function ConnexionRegister() {
   return (

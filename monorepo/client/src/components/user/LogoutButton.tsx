@@ -1,4 +1,4 @@
-import { handleLogout } from "../services/handleLogout";
+import { handleLogout } from "../../services/handleLogout";
 
 export function LogoutButton() {
   return (

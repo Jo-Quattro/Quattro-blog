@@ -1,5 +1,6 @@
 import type { RequestHandler } from "express";
 import userRepository from "../repositories/userRepository";
+import jwt from "jsonwebtoken";
 
 //BROWSE
 const browseUsers: RequestHandler = async (req, res, next) => {
@@ -11,6 +12,24 @@ const browseUsers: RequestHandler = async (req, res, next) => {
   }
 };
 //READ
+const getUserById: RequestHandler = async (req, res, next) => {
+  try {
+    const token = req.cookies?.token;
+    if (!token) {
+      res.status(401).json({ message: "Pas de token trouvé" });
+    }
+
+    const decoded = jwt.verify(token, process.env.APP_SECRET as string) as {
+      id: number;
+    };
+    const user_id = decoded.id;
+
+    const article = await userRepository.readSingleUser(user_id);
+    res.json(article);
+  } catch (err) {
+    next(err);
+  }
+};
 
 //EDIT
 
@@ -31,4 +50,4 @@ const addUser: RequestHandler = async (req, res, next) => {
 
 //DELETE
 
-export { addUser, browseUsers };
+export { addUser, browseUsers, getUserById };

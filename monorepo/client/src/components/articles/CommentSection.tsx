@@ -28,6 +28,7 @@ export function CommentSection() {
         )
       );
   }, [articleID]);
+  console.log("Commentaires bruts :", comments);
 
   return (
     <section className="w-[95%] md:w-[70%]">
