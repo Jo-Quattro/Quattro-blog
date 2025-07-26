@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { CommentSection } from "../components/CommentSection";
-import { AddComment } from "../components/AddComment";
+import { CommentSection } from "../components/articles/CommentSection";
+import { AddComment } from "../components/articles/AddComment";
 
 type Article = {
   id: number;
@@ -37,7 +37,7 @@ export function Article() {
   return (
     <>
       <article className="flex flex-col items-center gap-5 py-10 prose mx-auto ">
-        <h2 className="text-[2.5rem] text-center font-bold px-3 bg-linear-to-r/hsl from-[rgba(0, 0, 0, 0.10)] to-amber-800 bg-clip-text text-transparent ">
+        <h2 className="text-[2.5rem] px-3 text-center font-bold  bg-linear-to-r/hsl from-[rgba(0, 0, 0, 0.10)] to-amber-800 bg-clip-text text-transparent">
           {article.title}
         </h2>
         <img
@@ -47,7 +47,7 @@ export function Article() {
         />
         <div
           dangerouslySetInnerHTML={{ __html: article.content }}
-          className="border-3 text-center rounded-2xl border-mainBorder shadow-mainBorder shadow-md mx-2 p-5 text-xl
+          className="main-border text-center  mx-2 p-5 text-xl
           [&_img]:border-1 [&_img]:border-buttonBorder [&_img]:rounded-lg [&_img]:max-w-[80%] [&_img]:h-auto [&_img]:mx-auto"
         />
         <CommentSection />

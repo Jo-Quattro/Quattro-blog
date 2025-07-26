@@ -9,8 +9,23 @@
   --color-mainBorder: rgb(180 83 9); /* amber 800 */
   --color-buttonBorder: rgb(217 119 6); /* amber 600 */
   --color-shadow: gray;
+  --color-test: rgba(0, 0, 0, 0.1);
 }
-
+@layer components {
+  .btn {
+    @apply font-bold text-center rounded w-32 border-2 border-buttonBorder bg-secondTheme  px-2 active:brightness-90 active:border-cyan-900;
+  }
+  .main-border {
+    @apply border-2 rounded-2xl border-mainBorder;
+  }
+  .card-border {
+    @apply border rounded-2xl border-mainBorder shadow shadow-mainBorder;
+  }
+  .gradient-title {
+    @apply text-center font-bold text-transparent;
+  }
+}
+/* border-buttonBorder bg-secondTheme  px-2 active:brightness-90 active:border-cyan-900 */
 * {
   box-sizing: border-box;
 }
@@ -57,4 +72,5 @@ h3 {
 }
 .ql-container.ql-snow {
   height: 30rem;
+  border: 2px solid black;
 }

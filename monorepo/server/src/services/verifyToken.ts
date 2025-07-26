@@ -1,10 +1,11 @@
 import { getDecodedToken } from "./checkAuth";
+import { Response, NextFunction } from "express";
 
-export function verifyToken(req: any, res: any, next: any) {
+export function verifyToken(req: any, _res: Response, next: NextFunction) {
   try {
     req.user = getDecodedToken(req);
     return next();
-  } catch (err: any) {
-    return res.status(err.status || 401).json({ message: err.message });
+  } catch (err) {
+    next(err);
   }
 }

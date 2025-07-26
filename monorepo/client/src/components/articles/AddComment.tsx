@@ -1,4 +1,4 @@
-import { handleCommentSubmit } from "../services/handleComment";
+import { handleCommentSubmit } from "../../services/handleComment";
 
 export function AddComment({ article_id }: { article_id: number }) {
   return (

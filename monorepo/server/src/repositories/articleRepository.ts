@@ -1,5 +1,6 @@
 import databaseClient from "../../database/client";
 import type { Result, Rows } from "../../database/client";
+import { ResultSetHeader } from "mysql2";
 
 interface Article {
   id: number;
@@ -30,13 +31,30 @@ class articleRepository {
     );
     return rows as Article[];
   }
-
   async readSingleArticle(id: number) {
     const [rows] = await databaseClient.query<Rows>(
       "select id, preview_img, title, content from article where id = ?",
       [id]
     );
     return rows[0] as Article;
+  }
+  async readArticlesByUser(user_id: number) {
+    const [rows] = await databaseClient.query<Rows>(
+      "select id, preview_img, title, content from article where user_id = ?",
+      [user_id]
+    );
+    return rows as Article[];
+  }
+  //DELETE
+  async deleteUserArticle(article_id: number, user_id: number) {
+    const [result] = await databaseClient.query<ResultSetHeader>(
+      "delete from article where article.id = ? and user_id = ?",
+      [article_id, user_id]
+    );
+    if (result.affectedRows === 0) {
+      throw new Error("article inexistant ou acces non autorisé");
+    }
+    return result;
   }
 }
 export default new articleRepository();

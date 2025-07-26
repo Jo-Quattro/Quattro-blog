@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
-import { ArticleCard } from "../components/ArticleCard";
+import { ArticleCard } from "../components/articles/ArticleCard";
 
 interface Articles {
   id: number;
@@ -24,9 +24,9 @@ export function Home() {
         <span className="pr-15 sm:pr-20"> Des voyages, des recettes,</span>
         <span className="pl-15 sm:pl-20">des souvenirs à partager ?</span>
       </h2>
-      <div className="flex flex-wrap gap-5 justify-center items-center">
+      <div className="flex flex-wrap gap-5 justify-center items-center py-5">
         {articles.map((article) => (
-          <Link to={`/article/${article.id}`}>
+          <Link to={`/article/${article.id}`} key={article.id}>
             <ArticleCard
               title={article.title}
               preview_img={article.preview_img}

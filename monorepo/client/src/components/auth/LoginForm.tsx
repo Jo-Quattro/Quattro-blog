@@ -1,5 +1,4 @@
-import { handleLogin } from "../services/handleLogin";
-
+import { handleLogin } from "../../services/handleLogin";
 export function LoginForm() {
   return (
     <section className="flex flex-col gap-2 justify-center">
