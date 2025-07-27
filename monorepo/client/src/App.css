@@ -25,7 +25,6 @@
     @apply text-center font-bold text-transparent;
   }
 }
-/* border-buttonBorder bg-secondTheme  px-2 active:brightness-90 active:border-cyan-900 */
 * {
   box-sizing: border-box;
 }
@@ -67,8 +66,9 @@ h3 {
 .ql-editor img {
   max-width: 100%;
   height: auto;
-  max-height: 300px;
+  max-height: 450px;
   object-fit: contain;
+  margin: auto;
 }
 .ql-container.ql-snow {
   height: 30rem;

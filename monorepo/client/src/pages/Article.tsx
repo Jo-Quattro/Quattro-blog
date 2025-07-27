@@ -47,8 +47,8 @@ export function Article() {
         />
         <div
           dangerouslySetInnerHTML={{ __html: article.content }}
-          className="main-border text-center  mx-2 p-5 text-xl
-          [&_img]:border-1 [&_img]:border-buttonBorder [&_img]:rounded-lg [&_img]:max-w-[80%] [&_img]:h-auto [&_img]:mx-auto"
+          className="main-border w-[80%] text-center  mx-2 p-5 text-xl
+          [&_img]:border-1 [&_img]:border-buttonBorder [&_img]:rounded-lg [&_img]:h-auto [&_img]:max-h-[450px] [&_img]:mx-auto [&_img]:object-cover"
         />
         <CommentSection />
         <AddComment article_id={article.id} />
