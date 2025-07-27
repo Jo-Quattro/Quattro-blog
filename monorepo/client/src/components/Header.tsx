@@ -6,12 +6,12 @@ export function Header() {
   const isAuth = useAuth();
 
   return (
-    <header className="flex h-30 justify-between bg-[rgba(254,243,199,0.25)] px-2 items-center font-bold sticky top-0 z-19 backdrop-blur-md">
-      <h1 className="gradient-title text-[2.5rem] bg-clip-text bg-linear-to-r/hsl from-[rgba(0, 0, 0, 0.55)] to-amber-500">
+    <header className="sticky-blur flex h-20 justify-between px-2 items-center font-bold z-20">
+      <h1 className="gradient-title text-[2.5rem] bg-clip-text bg-linear-to-r/hsl from-color-mainTheme to-amber-500">
         <Link to="/">Quattro-Blog</Link>
       </h1>
 
-      <nav className="flex flex-col items-center gap-1.5">
+      <nav className="flex flex-col items-center gap-3">
         {isAuth ? (
           <LogoutButton />
         ) : (
@@ -26,12 +26,9 @@ export function Header() {
         ) : (
           ""
         )}
-        <Link to="/create/article" className="btn">
-          Crée un article
-        </Link>
       </nav>
 
-      <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-amber-700 to-transparent" />
+      <div className="gradient-border bg-gradient-to-r from-transparent via-main-border to-transparent" />
     </header>
   );
 }

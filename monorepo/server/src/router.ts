@@ -13,39 +13,51 @@ import {
   readArticle,
   deleteArticle,
   readArticlesByUser,
+  editArticle,
 } from "./controllers/articleController";
-//import multer from "multer";
+import multer from "multer";
 import {
   addComment,
   readCommentsArticle,
 } from "./controllers/commentController";
-import { verifyToken } from "./services/verifyToken";
 import { Response } from "express";
+import { requireAuth } from "./services/RequireAuth";
 
 //**************************************************** TODO NEXT ADD MULTER MIDDLEWARE ****************************************************
-
+const upload = multer();
 const router = express.Router();
 
-//AUTH
-router.post("/api/login", login);
-router.post("/api/logout", logout);
-router.get("/api/auth", verifyToken, (req: any, res: Response) => {
-  res.status(200).json({ user: req.user });
-});
 //USER
 router.post("/api/users", hashPassword, addUser);
 router.get("/api/users", browseUsers);
-router.get("/api/user", verifyToken, getUserById);
 
 //ARTICLE
 router.get("/api/articles", browseArticles);
 router.get("/api/article/:id", readArticle);
-router.post("/api/create/article", verifyToken, addArticle);
-router.post("/api/delete/article", verifyToken, deleteArticle);
-router.get("/api/user-articles", verifyToken, readArticlesByUser);
-
 //COMMENTS
 router.get("/api/comments/:id", readCommentsArticle);
-router.post("/api/comments", verifyToken, addComment);
+
+//AUTH
+router.post("/api/login", login);
+router.post("/api/logout", logout);
+router.get("/api/auth", requireAuth, (req: any, res: Response) => {
+  res.status(200).json({ userId: req.userId });
+});
+
+//PROTECTED ROUTES
+router.use(requireAuth);
+
+//User
+router.get("/api/user", getUserById);
+
+//Articles
+router.post("/api/create/article", addArticle);
+router.post("/api/delete/article", deleteArticle);
+router.get("/api/user-articles", readArticlesByUser);
+router.post("/api/article/:id", upload.none(), editArticle);
+
+//Comments
+router.post("/api/comments", addComment);
+//Auth
 
 export default router;

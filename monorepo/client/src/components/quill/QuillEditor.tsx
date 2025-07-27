@@ -46,7 +46,7 @@ export function QuillEditor({
       modules={modules}
       onChange={handleChange}
       value={value}
-      className="w-[90%] h-fit"
+      className="w-[90%]"
     />
   );
 }

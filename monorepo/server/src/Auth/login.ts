@@ -3,7 +3,7 @@ import userRepository from "../repositories/userRepository";
 import { verifyPassword } from "../services/verifyPasword";
 import { createJWT } from "../services/createJWT";
 import { createCookie } from "../services/createCookie";
-
+//TODO REFACTOR
 export const login: RequestHandler = async (req, res, next) => {
   try {
     const user = await userRepository.readByEmail(req.body.email);

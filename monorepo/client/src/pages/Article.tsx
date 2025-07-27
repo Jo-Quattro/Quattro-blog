@@ -43,12 +43,12 @@ export function Article() {
         <img
           src={article.preview_img}
           alt={article.title}
-          className="h-30 w-[95%] object-cover border rounded-2xl border-mainBorder shadow shadow-mainBorder hover:h-170  transition-[height] duration-500 ease-in-out"
+          className="h-30 w-[95%] object-cover border rounded-2xl border-main-border shadow shadow-main-border hover:h-170  transition-[height] duration-500 ease-in-out"
         />
         <div
           dangerouslySetInnerHTML={{ __html: article.content }}
           className="main-border w-[80%] text-center  mx-2 p-5 text-xl
-          [&_img]:border-1 [&_img]:border-buttonBorder [&_img]:rounded-lg [&_img]:h-auto [&_img]:max-h-[450px] [&_img]:mx-auto [&_img]:object-cover"
+          [&_img]:border-1 [&_img]:border-main-border [&_img]:rounded-lg [&_img]:h-auto [&_img]:max-h-[450px] [&_img]:mx-auto [&_img]:object-cover"
         />
         <CommentSection />
         <AddComment article_id={article.id} />

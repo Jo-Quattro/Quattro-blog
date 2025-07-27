@@ -1,6 +1,5 @@
 import type { RequestHandler } from "express";
 import articleRepository from "../repositories/articleRepository";
-import jwt from "jsonwebtoken";
 
 //BROWSE
 const browseArticles: RequestHandler = async (req, res, next) => {
@@ -23,16 +22,11 @@ const readArticle: RequestHandler = async (req, res, next) => {
 };
 const readArticlesByUser: RequestHandler = async (req, res, next) => {
   try {
-    const token = req.cookies?.token;
-    if (!token) {
-      res.status(401).json({ message: "Pas de token trouvé" });
+    const user_id = req.userID;
+    if (!user_id) {
+      res.status(400).json({ message: "Utilisateur introuvable" });
+      return;
     }
-
-    const decoded = jwt.verify(token, process.env.APP_SECRET as string) as {
-      id: number;
-    };
-    const user_id = decoded.id;
-
     const article = await articleRepository.readArticlesByUser(user_id);
     res.json(article);
   } catch (err) {
@@ -41,25 +35,37 @@ const readArticlesByUser: RequestHandler = async (req, res, next) => {
 };
 
 //EDIT
+const editArticle: RequestHandler = async (req, res, next) => {
+  try {
+    const user_id = req.userID;
+    const { title, preview_img, content, id } = req.body;
 
+    if (!id || !title || !content || !user_id) {
+      res.status(400).json({ message: "Champs manquants ou invalides" });
+      return;
+    }
+    await articleRepository.updateUserArticle({
+      title,
+      preview_img,
+      content,
+      user_id,
+      id,
+    });
+
+    res.status(201).json({ message: "Article modifié avec succès" });
+  } catch (err) {
+    next(err);
+  }
+};
 //ADD
 
 const addArticle: RequestHandler = async (req, res, next) => {
   try {
-    const token = req.cookies?.token;
-
-    if (!token) {
-      res.status(401).json({ message: "Pas de token trouvé" });
-    }
-
-    const decoded = jwt.verify(token, process.env.APP_SECRET as string) as {
-      id: number;
-    };
-
     const { title, preview_img, content } = req.body;
-    const user_id = decoded.id;
+    const user_id = (req as any).userID;
     if (!title || !content || !user_id) {
       res.status(400).json({ message: "Champs manquants" });
+      return;
     }
 
     await articleRepository.createArticle({
@@ -78,21 +84,14 @@ const addArticle: RequestHandler = async (req, res, next) => {
 //DELETE
 const deleteArticle: RequestHandler = async (req, res, next) => {
   try {
-    const token = req.cookies?.token;
-    const articleID = req.body.id;
-    if (!token) {
-      res.status(401).json({ message: "Pas de token trouvé" });
-    }
-    const decoded = jwt.verify(token, process.env.APP_SECRET as string) as {
-      id: number;
-      name: string;
-    };
-    const user_id = decoded.id;
-    if (!user_id) {
+    const user_id = req.userID;
+    const article_id = req.body.id;
+    if (!user_id || !article_id) {
       res.status(400).json({ message: "Champs manquants" });
+      return;
     }
-    await articleRepository.deleteUserArticle(articleID, user_id);
-    res.status(201).json({ message: "Article supprimé avec succès" });
+    await articleRepository.deleteUserArticle(article_id, user_id);
+    res.status(200).json({ message: "Article supprimé avec succès" });
   } catch (err) {
     next(err);
   }
@@ -104,4 +103,5 @@ export {
   readArticle,
   deleteArticle,
   readArticlesByUser,
+  editArticle,
 };
