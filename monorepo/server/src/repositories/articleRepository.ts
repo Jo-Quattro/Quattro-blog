@@ -5,6 +5,7 @@ import { ResultSetHeader } from "mysql2";
 interface Article {
   id: number;
   title: string;
+  preview_img: string;
   content: string;
   user_id: number;
 }
@@ -45,6 +46,24 @@ class articleRepository {
     );
     return rows as Article[];
   }
+  //UPDATE
+  async updateUserArticle({
+    title,
+    preview_img,
+    content,
+    id,
+    user_id,
+  }: Article) {
+    const [result] = await databaseClient.query<Result>(
+      "update article set title = ?, preview_img = ?, content = ? where article.id = ? and user_id = ?",
+      [title, preview_img, content, id, user_id]
+    );
+    if (result.affectedRows === 0) {
+      throw new Error("article inexistant ou acces non autorisé");
+    }
+    return result;
+  }
+
   //DELETE
   async deleteUserArticle(article_id: number, user_id: number) {
     const [result] = await databaseClient.query<ResultSetHeader>(

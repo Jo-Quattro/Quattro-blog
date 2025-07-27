@@ -5,11 +5,13 @@ export function RegisterForm() {
   const [successMessage, setSuccessMessage] = useState("");
   return (
     <section className="flex flex-col gap-2 justify-center">
-      <h2 className="text-center">Crée un compte</h2>
+      <h2 className="gradient-title text-[1.5rem] bg-clip-text bg-linear-to-r/hsl from-[rgba(0, 0, 0, 0.55)] to-amber-500">
+        Crée un compte
+      </h2>
 
       <form
         onSubmit={(e) => handleRegister(e, setSuccessMessage)}
-        className="w-65 p-5 flex gap-8 flex-col justify-center items-center rounded-2xl border-2 shadow-mainBorder shadow border-mainBorder"
+        className="w-65 p-5 flex gap-8 flex-col justify-center items-center rounded-2xl border-2 shadow-main-border shadow border-main-border"
       >
         <div className="flex flex-col">
           <input
@@ -18,7 +20,7 @@ export function RegisterForm() {
             type="email"
             name="email"
             required
-            className="border-2 pl-1 border-mainBorder bg-amber-50 rounded"
+            className="border-2 pl-1 border-main-border bg-amber-50 rounded"
           />
         </div>
         <div className="flex flex-col">
@@ -28,7 +30,7 @@ export function RegisterForm() {
             type="text"
             name="name"
             required
-            className="border-2 pl-1 border-mainBorder bg-amber-50 rounded"
+            className="border-2 pl-1 border-main-border bg-amber-50 rounded"
           />
         </div>
         <div className="flex flex-col">
@@ -38,7 +40,7 @@ export function RegisterForm() {
             type="password"
             name="password"
             required
-            className="border-2 pl-1 border-mainBorder bg-amber-50 rounded"
+            className="input-border"
           />
         </div>
         <div className="flex flex-col">
@@ -48,7 +50,7 @@ export function RegisterForm() {
             type="password"
             name="passwordConfirm"
             required
-            className="border-2 pl-1 border-mainBorder bg-amber-50 rounded"
+            className="input-border"
           />
         </div>
         <div className="flex justify-center gap-2">
@@ -70,7 +72,7 @@ export function RegisterForm() {
         </div>
         <button
           type="submit"
-          className="rounded border-2 font-semibold border-buttonBorder bg-secondTheme w-fit px-2 m-auto active:brightness-90 active:border-cyan-900"
+          className="btn w-35 active:brightness-90 active:border-cyan-900"
         >
           Crée ton compte{" "}
         </button>

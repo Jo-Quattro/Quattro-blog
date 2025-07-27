@@ -21,7 +21,7 @@ export function CommentCard({
   return (
     <div
       key={id}
-      className=" max-w-[60%] px-2 py-1 border-2 bg-secondTheme shadow-mainBorder shadow-sm border-mainBorder rounded-xl"
+      className=" max-w-[60%] px-2 py-1 card-border bg-main-theme/70"
     >
       <h3 className="text-[1.2rem] w-fit font-bold bg-linear-to-r/hsl from-[rgba(0, 0, 0, 0.10)] to-amber-800 bg-clip-text text-transparent">
         {user_name}

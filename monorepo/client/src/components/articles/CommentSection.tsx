@@ -38,7 +38,7 @@ export function CommentSection() {
       {comments.length === 0 ? (
         <p className="p-4 text-gray-500">Aucun commentaire pour l’instant.</p>
       ) : (
-        <div className="flex flex-col rounded-xl border-2 border-mainBorder shadow-mainBorder shadow-md">
+        <div className="flex flex-col main-border p-5">
           {comments.map((comment, idx) => (
             <div
               key={comment.id}

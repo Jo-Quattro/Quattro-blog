@@ -5,7 +5,7 @@ import { Footer } from "./components/Footer";
 
 function App() {
   return (
-    <main className="relative bg-mainTheme min-h-[100vh]">
+    <main className="relative bg-main-theme/30 min-h-[100vh]">
       <Header />
       <Outlet />
       <Footer />
