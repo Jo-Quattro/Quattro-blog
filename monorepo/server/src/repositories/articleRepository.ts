@@ -9,15 +9,14 @@ interface Article {
   content: string;
   user_id: number;
 }
-interface ArticleInput {
-  title: string;
-  preview_img: string;
-  content: string;
-  user_id: number;
-}
 //CREATE
 class articleRepository {
-  async createArticle({ title, preview_img, content, user_id }: ArticleInput) {
+  async createArticle(
+    title: string,
+    preview_img: string,
+    content: string,
+    user_id: number
+  ) {
     const [result] = await databaseClient.query<Result>(
       "insert into article (title, preview_img, content, user_id) values (?, ?, ?, ?)",
       [title, preview_img, content, user_id]
@@ -30,21 +29,21 @@ class articleRepository {
     const [rows] = await databaseClient.query<Rows>(
       "select article.id, article.preview_img, article.title, article.content, user.name as username from article inner join user on user_id = user.id"
     );
-    return rows as Article[];
+    return rows;
   }
   async readSingleArticle(id: number) {
     const [rows] = await databaseClient.query<Rows>(
       "select id, preview_img, title, content from article where id = ?",
       [id]
     );
-    return rows[0] as Article;
+    return rows[0];
   }
   async readArticlesByUser(user_id: number) {
     const [rows] = await databaseClient.query<Rows>(
       "select id, preview_img, title, content from article where user_id = ?",
       [user_id]
     );
-    return rows as Article[];
+    return rows;
   }
   //UPDATE
   async updateUserArticle({

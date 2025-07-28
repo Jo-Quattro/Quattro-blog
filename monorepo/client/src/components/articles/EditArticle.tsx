@@ -53,7 +53,7 @@ export function EditArticle({ articleID }: EditArticleProps) {
     formData.append("content", htmlContent);
 
     const res = await fetch(`${baseURL}/api/article/${articleID}`, {
-      method: "POST",
+      method: "PUT",
       credentials: "include",
       body: formData,
     });

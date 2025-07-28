@@ -8,14 +8,10 @@ interface User {
   password: string;
   is_admin: boolean;
 }
-interface UserInput {
-  name: string;
-  email: string;
-  password: string;
-}
+
 class userRepository {
   //CREATE
-  async createUser({ name, email, password }: UserInput) {
+  async createUser(name: string, email: string, password: string) {
     const [result] = await databaseClient.query<Result>(
       "insert into user (name, email, password) values (?, ?, ?)",
       [name, email, password]
@@ -28,7 +24,7 @@ class userRepository {
     const [rows] = await databaseClient.query<Rows>(
       "select id, name, email from user"
     );
-    return rows as User[];
+    return rows;
   }
 
   async readSingleUser(id: number) {
@@ -36,7 +32,7 @@ class userRepository {
       "select id, name, email from user where id = ?",
       [id]
     );
-    return rows[0] as User;
+    return rows[0];
   }
 
   async readByEmail(email: string) {
@@ -44,7 +40,7 @@ class userRepository {
       "select * from user where email = ?",
       [email]
     );
-    return rows[0] as User;
+    return rows[0];
   }
 
   //UPDATE
