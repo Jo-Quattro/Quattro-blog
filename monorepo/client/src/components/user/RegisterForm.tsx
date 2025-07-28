@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { handleRegister } from "../../services/handleRegister";
-
+/* import { countCharacters } from "../../services/countCharacters"; */
 export function RegisterForm() {
+  /*   const [count, setCount] = useState<number>(0); */
   const [successMessage, setSuccessMessage] = useState("");
   return (
     <section className="flex flex-col gap-2 justify-center">
@@ -41,6 +42,7 @@ export function RegisterForm() {
             name="password"
             required
             className="input-border"
+            /*    onChange={(e) => countCharacters(e, setCount)} */
           />
         </div>
         <div className="flex flex-col">

@@ -18,10 +18,10 @@ import {
 import multer from "multer";
 import {
   addComment,
-  readCommentsArticle,
+  readCommentsByArticle,
 } from "./controllers/commentController";
 import { Response } from "express";
-import { requireAuth } from "./services/RequireAuth";
+import { requireAuth } from "../src/services/requireAuth";
 
 //**************************************************** TODO NEXT ADD MULTER MIDDLEWARE ****************************************************
 const upload = multer();
@@ -35,7 +35,7 @@ router.get("/api/users", browseUsers);
 router.get("/api/articles", browseArticles);
 router.get("/api/article/:id", readArticle);
 //COMMENTS
-router.get("/api/comments/:id", readCommentsArticle);
+router.get("/api/comments/:id", readCommentsByArticle);
 
 //AUTH
 router.post("/api/login", login);

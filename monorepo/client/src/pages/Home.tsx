@@ -20,7 +20,7 @@ export function Home() {
   console.info(articles);
   return (
     <section className="py-10 flex flex-col gap-10">
-      <h2 className="gradient-title text-[1.7rem] sm:text-[2.5rem] flex flex-col bg-clip-text bg-linear-to-r/hsl from-color-mainTheme to-amber-500">
+      <h2 className="gradient-title text-[1.7rem] sm:text-[2.5rem] flex flex-col bg-clip-text bg-linear-to-r/hsl from-color-mainTheme/20 to-amber-500">
         <span className="pr-15 sm:pr-20 w-fit mx-auto">
           {" "}
           Des voyages, des recettes,
