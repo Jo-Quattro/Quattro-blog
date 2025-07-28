@@ -4,7 +4,7 @@ import commentRepository from "../repositories/commentRepository";
 //BROWSE
 
 //READ
-const readCommentsArticle: RequestHandler = async (req, res, next) => {
+const readCommentsByArticle: RequestHandler = async (req, res, next) => {
   try {
     const article_id = Number(req.params.id);
     if (!article_id) {
@@ -43,4 +43,4 @@ const addComment: RequestHandler = async (req, res, next) => {
 
 //DELETE
 
-export { addComment, readCommentsArticle };
+export { addComment, readCommentsByArticle };

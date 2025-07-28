@@ -22,7 +22,7 @@ export function UserPage() {
       .then((data) => setUserInfos(data))
       .catch((err) => console.error("Erreur de récupération :", err));
   }, []);
-  console.info(articleToModify);
+  console.info("User infos :", userInfos);
   return isAuth && userInfos ? (
     //TODO DISPLAY BUTTON TO MODIFY THE ARTICLES !
     <>
