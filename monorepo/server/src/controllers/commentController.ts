@@ -11,9 +11,7 @@ const readCommentsByArticle: RequestHandler = async (req, res, next) => {
       res.status(400).json({ message: "Id invalide" });
     }
 
-    const comments = await commentRepository.readCommentsArticle({
-      article_id: article_id,
-    });
+    const comments = await commentRepository.readCommentsArticle(article_id);
 
     res.json(comments);
   } catch (err) {
@@ -23,7 +21,6 @@ const readCommentsByArticle: RequestHandler = async (req, res, next) => {
 //EDIT
 
 //ADD
-
 const addComment: RequestHandler = async (req, res, next) => {
   try {
     const user_id = req.userID;
@@ -34,7 +31,7 @@ const addComment: RequestHandler = async (req, res, next) => {
       return;
     }
 
-    await commentRepository.createComment({ text, article_id, user_id });
+    await commentRepository.createComment(text, article_id, user_id);
     res.status(201).json({ message: "Commentaire créé avec succès" });
   } catch (err) {
     next(err);

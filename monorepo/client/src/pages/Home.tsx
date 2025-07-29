@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { ArticleCard } from "../components/articles/ArticleCard";
+import { useGET } from "../hooks/fetch/GET/useGET";
 
 interface Articles {
   id: number;
@@ -10,13 +10,7 @@ interface Articles {
   username: string;
 }
 export function Home() {
-  const baseURL = import.meta.env.VITE_API_URL;
-  const [articles, setArticles] = useState<Articles[]>([]);
-  useEffect(() => {
-    fetch(`${baseURL}/api/articles`)
-      .then((response) => response.json())
-      .then((data) => setArticles(data));
-  }, []);
+  const { data: articles } = useGET<Articles[]>("/api/articles", []);
   console.info(articles);
   return (
     <section className="py-10 flex flex-col gap-10">
@@ -30,7 +24,7 @@ export function Home() {
         </span>
       </h2>
       <div className="flex flex-wrap gap-5 justify-center items-center py-5">
-        {articles.map((article) => (
+        {articles?.map((article) => (
           <Link to={`/article/${article.id}`} key={article.id}>
             <ArticleCard
               title={article.title}

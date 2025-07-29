@@ -4,7 +4,7 @@ import {
   browseUsers,
   getUserById,
 } from "./controllers/userController";
-import { hashPassword } from "./services/hashPassword";
+import { hashPassword } from "./middlewares/hashPassword";
 import { login } from "./Auth/login";
 import { logout } from "./Auth/logout";
 import {
@@ -21,7 +21,7 @@ import {
   readCommentsByArticle,
 } from "./controllers/commentController";
 import { Response } from "express";
-import { requireAuth } from "../src/services/requireAuth";
+import { requireAuth } from "./middlewares/requireAuth";
 
 //**************************************************** TODO NEXT ADD MULTER MIDDLEWARE ****************************************************
 const upload = multer();
@@ -54,7 +54,7 @@ router.get("/api/user", getUserById);
 router.post("/api/create/article", addArticle);
 router.post("/api/delete/article", deleteArticle);
 router.get("/api/user-articles", readArticlesByUser);
-router.post("/api/article/:id", upload.none(), editArticle);
+router.put("/api/article/:id", upload.none(), editArticle);
 
 //Comments
 router.post("/api/comments", addComment);

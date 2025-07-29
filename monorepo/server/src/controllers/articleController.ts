@@ -62,18 +62,13 @@ const editArticle: RequestHandler = async (req, res, next) => {
 const addArticle: RequestHandler = async (req, res, next) => {
   try {
     const { title, preview_img, content } = req.body;
-    const user_id = (req as any).userID;
+    const user_id = req.userID;
     if (!title || !content || !user_id) {
       res.status(400).json({ message: "Champs manquants" });
       return;
     }
 
-    await articleRepository.createArticle({
-      title,
-      preview_img,
-      content,
-      user_id,
-    });
+    await articleRepository.createArticle(title, preview_img, content, user_id);
 
     res.status(201).json({ message: "Article créé avec succès" });
   } catch (err) {

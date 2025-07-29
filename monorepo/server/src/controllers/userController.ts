@@ -30,18 +30,13 @@ const getUserById: RequestHandler = async (req, res, next) => {
     next(err);
   }
 };
-
 //EDIT
 
 //ADD
 const addUser: RequestHandler = async (req, res, next) => {
   try {
-    const newUser = {
-      name: req.body.name,
-      email: req.body.email,
-      password: req.body.password,
-    };
-    const insertId = await userRepository.createUser(newUser);
+    const { name, email, password } = req.body;
+    const insertId = await userRepository.createUser(name, email, password);
     res.status(201).json({ insertId });
   } catch (err) {
     next(err);
