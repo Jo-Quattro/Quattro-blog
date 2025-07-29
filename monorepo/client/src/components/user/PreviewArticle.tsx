@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { ArticleCard } from "../articles/ArticleCard";
 import { Link } from "react-router";
 import { handleDeleteArticle } from "../../services/handleDeleteArticle";
+import { useGET } from "../../hooks/fetch/GET/useGET";
 
 interface ArticleProp {
   id: number;
@@ -11,19 +12,21 @@ interface ArticleProp {
 }
 //SPECIFIC TYPING TO BE ABLE TO UPDATE THE STATE
 import { Dispatch, SetStateAction } from "react";
-interface ModifyProp {
+interface PreviewArticleProps {
   setArticleToModify: Dispatch<SetStateAction<number | null>>;
 }
-export function PreviewArticle({ setArticleToModify }: ModifyProp) {
-  const baseURL = import.meta.env.VITE_API_URL;
-  const [articles, setArticles] = useState<ArticleProp[]>([]);
-  useEffect(() => {
-    fetch(`${baseURL}/api/user-articles`, { credentials: "include" })
-      .then((response) => response.json())
-      .then((data) => setArticles(data));
-  }, []);
-  console.info(articles);
+export function PreviewArticle({ setArticleToModify }: PreviewArticleProps) {
+  const [isDeleted, setIsDeleted] = useState<boolean | null>(false);
+  const { data: articles } = useGET<ArticleProp[]>("/api/user-articles", [
+    isDeleted,
+  ]);
 
+  useEffect(() => {
+    if (isDeleted === true) {
+      setIsDeleted(false);
+    }
+  }, [isDeleted]);
+  console.info("lenght :", articles?.length);
   return (
     <section className="main-border h-315 col-span-1 overflow-y-auto">
       <div className="sticky-blur h-15 flex items-center justify-center">
@@ -34,7 +37,7 @@ export function PreviewArticle({ setArticleToModify }: ModifyProp) {
       </div>
       {
         <div className="flex flex-wrap lg:flex-col lg:gap-5 py-3 items-center justify-center">
-          {articles.map((article) => (
+          {articles?.map((article) => (
             <div
               key={article.id}
               className="flex flex-col items-center lg:gap-4 "
@@ -58,7 +61,7 @@ export function PreviewArticle({ setArticleToModify }: ModifyProp) {
                 </button>
                 <button
                   type="button"
-                  onClick={() => handleDeleteArticle(article.id)}
+                  onClick={() => handleDeleteArticle(article.id, setIsDeleted)}
                   className="btn border-red-500"
                 >
                   Supprimer

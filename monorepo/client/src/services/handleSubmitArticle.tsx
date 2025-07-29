@@ -11,6 +11,7 @@ export const handleSubmitArticle = async (
   const formData = new FormData(form);
 
   const title = formData.get("title") as string;
+  const preview_img = formData.get("preview_img") as string;
 
   const res = await fetch(`${baseURL}/api/create/article`, {
     method: "POST",
@@ -18,7 +19,7 @@ export const handleSubmitArticle = async (
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ title, content: htmlContent }),
+    body: JSON.stringify({ title, preview_img, content: htmlContent }),
   });
 
   if (res.ok) {

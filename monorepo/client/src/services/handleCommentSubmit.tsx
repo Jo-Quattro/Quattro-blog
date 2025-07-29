@@ -2,7 +2,9 @@ const baseURL = import.meta.env.VITE_API_URL;
 
 export async function handleCommentSubmit(
   event: React.FormEvent<HTMLFormElement>,
-  article_id: number
+  article_id: number,
+  setIsSent: React.Dispatch<React.SetStateAction<Boolean | null>>,
+  setTextArea: React.Dispatch<React.SetStateAction<string>>
 ) {
   event.preventDefault();
   const form = new FormData(event.currentTarget);
@@ -20,12 +22,12 @@ export async function handleCommentSubmit(
       credentials: "include",
       body: JSON.stringify(formData),
     });
-
+    setIsSent(true);
+    setTimeout(() => setIsSent(null), 500);
+    setTextArea("");
     if (!response.ok) {
       throw new Error("Erreur lors de l'envoi du commentaire");
     }
-
-    window.location.reload();
   } catch (err) {
     console.error(err);
     alert("Erreur de connexion");

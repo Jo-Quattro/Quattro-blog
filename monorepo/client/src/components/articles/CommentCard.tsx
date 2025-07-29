@@ -11,7 +11,7 @@ export function CommentCard({
   text,
   creation_date,
 }: CommentProps) {
-  const prettyDate = creation_date.toLocaleString("fr-FR", {
+  const prettyDate = new Date(creation_date).toLocaleString("fr-FR", {
     day: "numeric",
     month: "long",
     year: "numeric",

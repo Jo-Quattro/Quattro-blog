@@ -40,7 +40,7 @@ class userRepository {
       "select * from user where email = ?",
       [email]
     );
-    return rows[0];
+    return rows[0] as User;
   }
 
   //UPDATE
