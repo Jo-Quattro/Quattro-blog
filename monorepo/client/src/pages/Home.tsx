@@ -1,4 +1,3 @@
-import { Link } from "react-router";
 import { ArticleCard } from "../components/articles/ArticleCard";
 import { useGET } from "../hooks/fetch/GET/useGET";
 
@@ -25,13 +24,14 @@ export function Home() {
       </h2>
       <div className="flex flex-wrap gap-5 justify-center items-center py-5">
         {articles?.map((article) => (
-          <Link to={`/article/${article.id}`} key={article.id}>
+          <div key={article.id}>
             <ArticleCard
+              articleID={article.id}
               title={article.title}
               preview_img={article.preview_img}
               username={article.username}
             />
-          </Link>
+          </div>
         ))}
       </div>
     </section>

@@ -8,11 +8,13 @@ export async function getAPI<DynamicType>(
       credentials: "include",
     });
     if (!res.ok) {
+      console.error("Erreur HTTP", res.status);
+      return null;
     }
     const data: DynamicType = await res.json();
     return data;
   } catch (err) {
-    console.error("Erreur lors de la récuperation des donnees:", err);
+    console.error("Erreur lors de la récupération des données:", err);
     return null;
   }
 }

@@ -1,6 +1,7 @@
 import { useParams } from "react-router";
 import { CommentSection } from "../components/articles/CommentSection";
 import { useGET } from "../hooks/fetch/GET/useGET";
+import { LikeButton } from "../components/articles/LikeButton";
 
 interface Article {
   id: number;
@@ -23,9 +24,11 @@ export function Article() {
   return (
     <>
       <article className="flex flex-col items-center gap-5 py-10 mx-auto ">
+        <div className="flex flex-col sm:flex-row items-center">
         <h2 className="text-[2.5rem] px-3 text-center font-bold  bg-linear-to-r/hsl from-[rgba(0, 0, 0, 0.10)] to-amber-800 bg-clip-text text-transparent">
           {article.title}
-        </h2>
+        </h2><LikeButton articleID={article.id} className="text-2xl" />
+        </div>
         <img
           src={article.preview_img}
           alt={article.title}
