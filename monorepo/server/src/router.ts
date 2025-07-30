@@ -36,6 +36,8 @@ router.get("/api/articles", browseArticles);
 router.get("/api/article/:id", readArticle);
 //COMMENTS
 router.get("/api/comments/:id", readCommentsByArticle);
+//LIKES
+router.get("/api/article/:articleId/likes-count", getLikeCount);
 
 //AUTH
 router.post("/api/login", login);
@@ -58,6 +60,14 @@ router.put("/api/article/:id", upload.none(), editArticle);
 
 //Comments
 router.post("/api/comments", addComment);
-//Auth
+import {
+  toggleLike,
+  isLiked,
+  getLikeCount,
+} from "./controllers/likeArticleController";
+
+// Likes
+router.post("/api/article/:articleId/like", toggleLike);
+router.get("/api/article/:articleId/like", isLiked);
 
 export default router;

@@ -29,6 +29,15 @@ CREATE TABLE comment (
   FOREIGN KEY (article_id) REFERENCES article(id) ON DELETE CASCADE
 );
 
+CREATE TABLE article_likes (
+  id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  is_liked BOOLEAN DEFAULT TRUE,
+  user_id INT NOT NULL,
+  article_id INT NOT NULL,
+  UNIQUE (user_id, article_id),
+  FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE,
+  FOREIGN KEY (article_id) REFERENCES article(id) ON DELETE CASCADE
+);
 insert into user (id, name, email, password, is_admin)
   values
   (1,"Jordan", "Jordan.Aulagnier@gmail.com", "$argon2id$v=19$m=65536,t=3,p=4$qzhoFHVxUr7iupTRMpUXEw$yBIvUMFryP4WHCMGipDN4Sa6tPqFnoZnu2N9anPWta8", true);
